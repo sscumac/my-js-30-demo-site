@@ -7,5 +7,4 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
   end
 
-
 end
