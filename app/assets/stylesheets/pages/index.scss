@@ -9,17 +9,27 @@ body {
   flex-direction: column;
 }
 
+a {
+  text-decoration: none;
+}
+
 .card-number {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 48px;
   font-weight: bold;
 }
 
+.card-name {
+  height: 90%;
+  padding-left: 3%;
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 5%;
   width: 75vw;
+  column-gap: 5%;
+  row-gap: 12%;
 }
 
 .challenge-card {
@@ -28,24 +38,35 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  opacity: 0.5;
+  transition: all 0.8s;
 }
+
+.challenge-card:hover {
+  opacity: 0.85;
+  box-shadow: 0px 0px 70px 10px #cccccc;
+}
+
+
 
 .card-info {
   flex-grow:2;
   display: flex;
   align-items: flex-end;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .challenge-card img {
   max-width: 100%;
+  max-height: 100%;
 
 }
 
 .card-image-holder {
   width: 100%;
-  background-color: red;
+  height: 100%;
+  // background-color: red;
   overflow: hidden;
 }
 
@@ -65,5 +86,5 @@ body {
 .search-wrapper {
   height: 15vh;
   width: 75vw;
-  border: 1px solid black;
+  // border: 1px solid black;
 }

@@ -6,10 +6,12 @@
     <% @challenges.each do |challenge| %>
       <%= link_to challenge_path(challenge) do %>
         <div class="challenge-card">
-          <%= image_tag("card-images/#{challenge.number}.jpg") rescue nil %> 
+          <div class="card-image-holder">
+             <%= image_tag("card-images/#{challenge.number}.jpg") rescue nil  %> <%# rescue nil: doesnt crash when there is no image  %>
+          </div>
           <div class="card-info">
             <div class="card-number">
-              <%= challenge.number %>
+              0<%= challenge.number %>
             </div>
             <div class="card-name">
               <%= challenge.name %>
