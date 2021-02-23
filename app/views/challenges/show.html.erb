@@ -1,13 +1,8 @@
 
-<%# render partials depending on id? %>
-
-<h1><%= @challenge.name %></h1>
-
-
 <%= render "challenges/challenge_views/#{params[:id]}.html" %>
 
 
-  
+<%= javascript_pack_tag "#{params[:id]}" %>
 
 
 

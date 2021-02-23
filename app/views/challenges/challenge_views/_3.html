@@ -1,0 +1,136 @@
+<h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+<div class="controls">
+  <div class="control-container">
+    <label for="spacing">Spacing</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+  </div>
+
+  <div class="control-container">
+    <label for="blur">Blur</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+  </div>
+
+  <div class="control-container">
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+</div>
+
+<img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+
+<style>
+  :root {
+    --base: #ffc600;
+    --spacing: 10px;
+    --blur: 10px;
+  }
+
+  img {
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+  }
+
+  .hl {
+    color: var(--base);
+  }
+
+  body {
+    text-align: center;
+    background: white;
+    /* color: black; */
+    font-family: 'helvetica neue', sans-serif;
+    font-weight: 100;
+    font-size: 3rem;
+  }
+
+  label {
+    margin-bottom: 8px;
+  }
+
+  .control-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 4rem;
+  }
+
+  .controls {
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 25%;
+    /* font-weight: bold; */
+  }
+
+  input {
+    margin-left: 50px;
+  }
+
+  input[type='range'] {
+    width: 100px;
+    height: 2px;
+  }
+
+  input[type='color'] {
+    border: 2px solid white;
+  }
+
+  input[type='color']:focus {
+    outline: none;
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      /* overflow: hidden; */
+      width: 80px;
+      -webkit-appearance: none;
+      background-color: #000000;
+    }
+
+    input[type='range']:focus {
+      outline: none;
+    }
+
+    input[type='color'] {
+      -webkit-appearance: none;
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: #13bba4;
+      margin-top: -7px;
+      position: relative;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      width: 1rem;
+      -webkit-appearance: none;
+      height: 1rem;
+      margin-bottom: 10px;
+      cursor: ew-resize;
+      border-radius: 50%;
+      background: #ffc600;
+    }
+
+    @media only screen and (max-width: 1450px) {
+      body {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media only screen and (max-width: 1250px) {
+      body {
+        font-size: 2rem;
+      }
+    }
+
+  }
+</style>

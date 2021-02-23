@@ -1,10 +1,21 @@
-<h1>index page</h1>
+<div class="main-header">My JavaScript 30</div>
+
+<div class="search-wrapper"></div>
 
  <div class="cards-container">
     <% @challenges.each do |challenge| %>
-      <%= link_to "link", challenge_path(challenge) %>
-
-      <%= challenge.name %>
-      <%= challenge.number %>
+      <%= link_to challenge_path(challenge) do %>
+        <div class="challenge-card">
+          <%= image_tag("card-images/#{challenge.number}.jpg") rescue nil %> 
+          <div class="card-info">
+            <div class="card-number">
+              <%= challenge.number %>
+            </div>
+            <div class="card-name">
+              <%= challenge.name %>
+            </div>
+          </div>
+        </div>
+      <% end %> 
     <% end %>
   </div>

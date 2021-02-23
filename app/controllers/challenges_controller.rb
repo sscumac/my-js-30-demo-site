@@ -7,4 +7,8 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.find(params[:id])
   end
 
+  def challenge_params
+    params.require(:challenge).permit(:name, :number)
+  end
+
 end
