@@ -1,17 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import "config/fonts";
 
-
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-a {
-  text-decoration: none;
-}
 
 .card-number {
   font-family: Arial, Helvetica, sans-serif;
@@ -30,6 +18,8 @@ a {
   width: 75vw;
   column-gap: 5%;
   row-gap: 12%;
+  position: sticky;
+  top: 30vh;
 }
 
 .challenge-card {
@@ -46,7 +36,6 @@ a {
   opacity: 0.85;
   box-shadow: 0px 0px 70px 10px #cccccc;
 }
-
 
 
 .card-info {
@@ -68,23 +57,4 @@ a {
   height: 100%;
   // background-color: red;
   overflow: hidden;
-}
-
-
-
-.main-header {
-  height: 10vh;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Zilla Slab";
-  font-weight: bold;
-  font-size: 36px;;
-}
-
-.search-wrapper {
-  height: 15vh;
-  width: 75vw;
-  // border: 1px solid black;
 }

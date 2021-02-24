@@ -1,0 +1,127 @@
+<form class="search-form">
+  <input type="text" class="search" placeholder="City or State">
+  <ul class="suggestions off">
+    <li>Filter for a city</li>
+    <li>or a state</li>
+  </ul>
+</form>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+  overflow: hidden; /* Hide scrollbars */
+
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+input {
+  width: 100%;
+  padding: 20px;
+}
+
+.search-form {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+input.search {
+  outline: none;
+  margin: 0;
+  text-align: center;
+  /* outline: 0; */
+  border: 0px solid #ffffff;
+  width: 120%;
+  left: -10%;
+  position: relative;
+  top: 10px;
+  z-index: 2;
+  /* border-radius: 5px; */
+  font-size: 40px;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19); */
+}
+
+input.search {
+  outline: none;
+}
+
+input.search:focus {
+  /* border: 0px solid #ffffff; */
+  box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+}
+
+.suggestions {
+  margin-top: 10px;
+  padding: 0;
+  z-index: 10;
+  position: relative;
+  font-family: 'Gothic A1', sans-serif;
+  transition: all 1s;
+  font-weight: 500;
+  font-size: 14px;
+  /* height: 100vh; */
+}
+
+.search::placeholder {
+  opacity: 0.3;
+}
+
+.suggestions li {
+  background: white;
+  list-style: none;
+  
+  /* border-bottom: 1px solid #D8D8D8; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.14); */
+  /* margin-top: 10px; */
+  padding: 12px;
+  
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.suggestions li:nth-child(even) {
+  /* transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001); */
+  /* background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%); */
+}
+
+.suggestions li:nth-child(odd) {
+  /* transform: perspective(100px) rotateX(-3deg) translateY(3px); */
+  /* background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%); */
+}
+
+span.pop {
+  font-size: 10px;
+  text-transform: lowercase;
+  opacity: 0.5;
+}
+
+.hl {
+  background: #ffc600;
+}
+
+.off {
+  /* opacity: 0; */
+  /* transform: translate(0px,-83px); */
+  height: 0px;
+  overflow: hidden;
+  transition: all 2.25s cubic-bezier(0, 1.2, 0.32, 1.07);
+}
+
+.on {
+  height: 100vh;
+  overflow: hidden;
+  transition: all 3s cubic-bezier(0.85, 0.65, 0.26, 2.88);
+}
+
+</style>

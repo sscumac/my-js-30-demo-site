@@ -1,23 +1,43 @@
-<div class="main-header">My JavaScript 30</div>
+<div class="page">
 
-<div class="search-wrapper"></div>
+  <div class="main-header">My JavaScript 30</div>
 
- <div class="cards-container">
-    <% @challenges.each do |challenge| %>
-      <%= link_to challenge_path(challenge) do %>
-        <div class="challenge-card">
-          <div class="card-image-holder">
-             <%= image_tag("card-images/#{challenge.number}.jpg") rescue nil  %> <%# rescue nil: doesnt crash when there is no image  %>
-          </div>
-          <div class="card-info">
-            <div class="card-number">
-              0<%= challenge.number %>
-            </div>
-            <div class="card-name">
-              <%= challenge.name %>
-            </div>
-          </div>
-        </div>
-      <% end %> 
-    <% end %>
+  <div class="search-wrapper">
+    <input type="text" class="search-field" placeholder="search">
+    <%= image_tag("search.png", size: "20") %>
   </div>
+
+  <div class="cards-container">
+      <% @challenges.each do |challenge| %>
+        <%= link_to challenge_path(challenge), class: "card-link" do %>
+          <div class="challenge-card">
+            <div class="card-image-holder">
+              <%= image_tag("card-images/#{challenge.number}.jpg") rescue nil  %> <%# rescue nil: doesnt crash when there is no image  %>
+            </div>
+            <div class="card-info">
+              <div class="card-number">
+              <% if challenge.number < 10 %>
+                0<%= challenge.number %>
+              <% else %>
+                <%= challenge.number %>
+              <% end %>
+              </div>
+              <div class="card-name">
+                <%= challenge.name %>
+              </div>
+            </div>
+          </div>
+        <% end %> 
+      <% end %>
+    </div>
+
+
+    <div class="footer">
+      <%= inline_svg_tag "information.svg", size: "25", class: "info" %>
+    
+    sscumac©2021
+    </div>
+
+</div>
+
+<%= javascript_pack_tag "index" %>
