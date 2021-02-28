@@ -3,6 +3,8 @@
 
 <%= render "challenges/challenge_views/#{params[:id]}.html" %>
 
+<%= stylesheet_link_tag "challenges/challenges-styles#{params[:id]}.scss" rescue nil  %>
+
 <%= javascript_pack_tag "#{params[:id]}" %>
 
 

@@ -21,4 +21,6 @@ challenge_7 = Challenge.create(name: "Array Cardio #2", number: 7)
 challenge_8 = Challenge.create(name: "Fun with HTML Canvas", number: 8)
 challenge_9 = Challenge.create(name: "Dev Tool Domination", number: 9)
 challenge_10 = Challenge.create(name: "Hold Shift for Checkboxes", number: 10)
+challenge_11 = Challenge.create(name: "Custom Video Player", number: 11)
+
 
