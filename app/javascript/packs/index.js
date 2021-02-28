@@ -1,6 +1,19 @@
 
 
 const searchInput = document.querySelector(".search-field");
+const grid = document.querySelector(".cards-container");
+const cards = document.querySelectorAll(".card-link");
+const whiteSpace = document.getElementById("white-space");
+
+// extend grid dynamically
+
+function extendGrid() {
+  const columnsCount = window.getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+  const cardsCount = cards.length;
+  const rowsCount = Math.ceil(cardsCount / columnsCount);
+  whiteSpace.style.gridRowEnd = rowsCount + 2;
+  console.log(rowsCount);
+}
 
 
 
@@ -8,7 +21,7 @@ const searchInput = document.querySelector(".search-field");
 
 function displaySearchResults() {
   const search = this.value;
-  const cards = document.querySelectorAll(".card-link");
+  // const cards = document.querySelectorAll(".card-link");
   const cardsArr = Array.from(cards);
   // console.log(findMatch(search, cardsArr));
   const matchingCards = findMatch(search, cardsArr);
@@ -24,6 +37,7 @@ function displaySearchResults() {
       })
 
     })
+  extendGrid();
     
   // matchingCards.forEach((card) => {
   //   if (card.name)
@@ -48,6 +62,10 @@ function findMatch(search, cards) {
 //   console.log(name.innerText); 
 // });
 
+extendGrid();
+
 // event listeners
 
 searchInput.addEventListener("keyup", displaySearchResults);
+
+window.addEventListener('resize', extendGrid);

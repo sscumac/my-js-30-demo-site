@@ -1,6 +1,6 @@
 <div class="page">
 
-  <div class="main-header">My JavaScript 30</div>
+  <div class="main-header">My Vanilla JavaScript 30</div>
 
   <div class="search-wrapper">
     <input type="text" class="search-field" placeholder="search">
@@ -16,11 +16,11 @@
             </div>
             <div class="card-info">
               <div class="card-number">
-              <% if challenge.number < 10 %>
-                0<%= challenge.number %>
-              <% else %>
-                <%= challenge.number %>
-              <% end %>
+                <% if challenge.number < 10 %>
+                  0<%= challenge.number %>
+                <% else %>
+                  <%= challenge.number %>
+                <% end %>
               </div>
               <div class="card-name">
                 <%= challenge.name %>
@@ -29,7 +29,8 @@
           </div>
         <% end %> 
       <% end %>
-    </div>
+    <div id="white-space"></div>
+  </div>
 
 
     <div class="footer">

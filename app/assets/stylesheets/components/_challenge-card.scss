@@ -12,15 +12,7 @@
   padding-left: 3%;
 }
 
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 75vw;
-  column-gap: 5%;
-  row-gap: 12%;
-  position: sticky;
-  top: 30vh;
-}
+
 
 .challenge-card {
   // background-color: black;
@@ -43,7 +35,7 @@
   display: flex;
   align-items: flex-end;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .challenge-card img {
@@ -57,4 +49,56 @@
   height: 100%;
   // background-color: red;
   overflow: hidden;
+}
+
+.cards-container {
+  margin-top: 3%;
+}
+
+@media only screen and (max-width: 599px) {
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 75vw;
+    // column-gap: 5%; 
+    row-gap: 20px;
+    position: sticky;
+    top: 30vh;
+  }
+}
+
+@media only screen and (min-width: 600px ) {
+	.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 75vw;
+    column-gap: 5%;
+    row-gap: 12%;
+    position: sticky;
+    top: 30vh;
+  }
+}
+
+@media only screen and (min-width: 980px ) {
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 75vw;
+    column-gap: 5%;
+    row-gap: 12%;
+    position: sticky;
+    top: 30vh;
+  }
+}
+
+@media only screen and (min-width: 1260px ) {
+ .cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 75vw;
+  column-gap: 5%;
+  row-gap: 12%;
+  position: sticky;
+  top: 30vh;
+  }
 }
