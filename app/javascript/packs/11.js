@@ -1,7 +1,7 @@
 // DOM
 
 const player = document.querySelector(".player");
-const video = player.querySelector(".viewer");
+const video = document.getElementById("video");
 
 const progress = player.querySelector(".progress");
 const progressBar = player.querySelector(".progress__filled");
@@ -23,12 +23,16 @@ function togglePlay() {
 function toggleButton() {
   const icon = this.paused ? '►' : '❚ ❚' // "this" because it refers to video which has a paused method
   playButton.textContent = icon;
-  console.log(typeof this.currentTime);
+  console.log(this.currentTime);
 }
 
 function skip() {
+  
   const skipNum = parseInt(this.dataset.skip);
-  video.currentTime += skipNum;
+  console.log(skipNum);
+  // video.currentTime += skipNum;
+  video.currentTime = 12;
+  console.log(video.currentTime);
 }
 
 function handleRangeUpdate() {
