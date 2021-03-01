@@ -4,15 +4,16 @@ const searchInput = document.querySelector(".search-field");
 const grid = document.querySelector(".cards-container");
 const cards = document.querySelectorAll(".card-link");
 const whiteSpace = document.getElementById("white-space");
+const infoIcon = document.querySelector(".info");
+const infoText = document.querySelector("#info-box .text");
+const infoBox = document.getElementById("info-box");
 
 // extend grid dynamically
-
 function extendGrid() {
   const columnsCount = window.getComputedStyle(grid).gridTemplateColumns.split(" ").length;
   const cardsCount = cards.length;
   const rowsCount = Math.ceil(cardsCount / columnsCount);
   whiteSpace.style.gridRowEnd = rowsCount + 2;
-  console.log(rowsCount);
 }
 
 
@@ -38,11 +39,6 @@ function displaySearchResults() {
 
     })
   extendGrid();
-    
-  // matchingCards.forEach((card) => {
-  //   if (card.name)
-  //   (card.innerText);
-  // })
 }
 
 // function to find search matches
@@ -55,12 +51,21 @@ function findMatch(search, cards) {
   })
 };
 
-// console.log(cards);
 
-// cards.forEach((card) => {
-//   const name = card.querySelector(".card-name");
-//   console.log(name.innerText); 
-// });
+function showInfoBox() {
+  infoBox.style.display = "block";
+  infoText.style.opacity = 1;
+  grid.style.opacity = 0.1;
+}
+
+function hideInfoBox() {
+  infoText.style.opacity = 0;
+  grid.style.opacity = 1;
+  setTimeout(function () {
+    infoBox.style.display = "none";
+  }, 1000);
+}
+
 
 extendGrid();
 
@@ -69,3 +74,6 @@ extendGrid();
 searchInput.addEventListener("keyup", displaySearchResults);
 
 window.addEventListener('resize', extendGrid);
+
+infoIcon.addEventListener('mouseover', showInfoBox);
+document.addEventListener('click', hideInfoBox);

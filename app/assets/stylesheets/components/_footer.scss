@@ -21,3 +21,21 @@
   padding-bottom: 10px;
   padding-top: 10px;
 }
+
+
+#info-box {
+  padding: 100px;
+  transition: all 1s;
+  // background-color: white;
+  width: 25vw;
+  height: 25vh;
+  z-index: 10;
+  position: fixed;
+  bottom: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#info-box .text {
+  opacity: 0;
+  transition: opacity 1s;
+}
