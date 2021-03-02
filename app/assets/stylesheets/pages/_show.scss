@@ -2,8 +2,9 @@
   filter: invert(100%) sepia(3%) saturate(590%) hue-rotate(242deg) brightness(117%) contrast(100%);
   position: fixed;
   z-index: 10;
-  top: 100px;
-  left: 100px;
+  top: 4vh;
+  left: 4vw;
+  
 }
 
 a:hover + #back-text {
@@ -17,7 +18,7 @@ a:hover + #back-text {
   font-family: zilla slab;
   font-weight: lighter;
   position: fixed;
-  top: 84px;
-  left: 160px;
+	top: 2.5vh;
+  left: 9vw;
 }
 
