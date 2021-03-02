@@ -4,7 +4,7 @@ const searchInput = document.querySelector(".search-field");
 const grid = document.querySelector(".cards-container");
 const cards = document.querySelectorAll(".card-link");
 const whiteSpace = document.getElementById("white-space");
-const infoIcon = document.querySelector(".info");
+const infoIcon = document.querySelector(".icon-container");
 const infoText = document.querySelector("#info-box .text");
 const infoBox = document.getElementById("info-box");
 
@@ -54,7 +54,10 @@ function findMatch(search, cards) {
 
 function showInfoBox() {
   infoBox.style.display = "block";
-  infoText.style.opacity = 1;
+  // infoText.style.opacity = 1;
+  setTimeout(function () {
+    infoText.style.opacity = 1;
+  }, 500);
   grid.style.opacity = 0.1;
 }
 
