@@ -24,22 +24,39 @@
 }
 
 
-#info-box {
-  display: none;
-  padding: 100px;
-  transition: all 1s;
-  // background-color: white;
-  width: 25vw;
-  height: 25vh;
-  z-index: 10;
-  position: fixed;
-  bottom: 100px;
-  font-family: "Zilla Slab";
-  line-height: 1.5;
-  letter-spacing: 0.1rem;
-}
-
 #info-box .text {
   opacity: 0;
   transition: opacity 1s;
+}
+
+@media only screen and (max-width: 980px ) {
+  #info-box {
+    bottom: 200px;
+    width: 50vw;
+    display: none;
+    padding: 100px;
+    transition: all 1s;
+    height: 25vh;
+    z-index: 10;
+    position: fixed;
+    font-family: "Zilla Slab";
+    line-height: 1.5;
+    letter-spacing: 0.1rem;
+  }
+}
+
+@media only screen and (min-width: 981px ) {
+  #info-box {
+    bottom: 100px;
+    width: 25vw;
+    display: none;
+    padding: 100px;
+    transition: all 1s;
+    height: 25vh;
+    z-index: 10;
+    position: fixed;
+    font-family: "Zilla Slab";
+    line-height: 1.5;
+    letter-spacing: 0.1rem;
+  }
 }
