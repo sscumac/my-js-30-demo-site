@@ -51,22 +51,24 @@ function findMatch(search, cards) {
   })
 };
 
+// functions for footer
 
 function showInfoBox() {
   infoBox.style.display = "block";
-  // infoText.style.opacity = 1;
-  setTimeout(function () {
-    infoText.style.opacity = 1;
-  }, 500);
+  console.log(infoText);
+  infoText.style.opacity = 1;
+  // setTimeout(function () {
+  //   infoText.style.opacity = 1;
+  // }, 500);
   grid.style.opacity = 0.1;
 }
 
 function hideInfoBox() {
   infoText.style.opacity = 0;
   grid.style.opacity = 1;
-  setTimeout(function () {
-    infoBox.style.display = "none";
-  }, 1000);
+  // setTimeout(function () {
+  //   infoBox.style.display = "none";
+  // }, 1000);
 }
 
 
@@ -78,5 +80,5 @@ searchInput.addEventListener("keyup", displaySearchResults);
 
 window.addEventListener('resize', extendGrid);
 
-infoIcon.addEventListener('mouseover', showInfoBox);
-document.addEventListener('click', hideInfoBox);
+infoIcon.addEventListener('click', showInfoBox);
+infoBox.addEventListener('click', hideInfoBox);
