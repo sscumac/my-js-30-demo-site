@@ -33,7 +33,7 @@
   </div>
 
   <div id="info-box">
-  <p class="text">this demo website was built with ruby on rails to showcase my recent work with javascript.
+  <p class="text" style="opacity: 0">this demo website was built with ruby on rails to showcase my recent work with javascript.
   a collection of small web applications and exercises based on and inspired by <%= link_to "wes bos", "https://javascript30.com/"  %>.
   only vanilla javascript has been used, no libraries or frameworks. work in progress.</p>
   </div>
@@ -41,7 +41,8 @@
 
     <div class="footer">
     <div class="icon-container">
-      <%= inline_svg_tag "information.svg", size: "25", class: "info" %>
+      <%= inline_svg_tag "information.svg", size: "25", id: "info", class: "icon" %>
+      <%= inline_svg_tag "close.svg", size: "25", id: "close", class: "icon hide" %>
     </div>
     <%= link_to "sscumac©2021", "https://github.com/sscumac"  %>
     </div>

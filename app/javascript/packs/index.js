@@ -4,9 +4,11 @@ const searchInput = document.querySelector(".search-field");
 const grid = document.querySelector(".cards-container");
 const cards = document.querySelectorAll(".card-link");
 const whiteSpace = document.getElementById("white-space");
-const infoIcon = document.querySelector(".icon-container");
+const infoIconField = document.querySelector(".icon-container");
 const infoText = document.querySelector("#info-box .text");
 const infoBox = document.getElementById("info-box");
+const infoClose = document.getElementById("close");
+const infoIcon = document.getElementById("info");
 
 // extend grid dynamically
 function extendGrid() {
@@ -54,19 +56,21 @@ function findMatch(search, cards) {
 // functions for footer
 
 function showInfoBox() {
-  infoBox.style.display = "block";
-  setTimeout(function () {
-    infoBox.style.opacity = 1;
-  }, 50);
+  infoBox.classList.add("show-info-box");
   grid.style.opacity = 0.1;
+  infoText.style.opacity = 1;
+  infoClose.classList.remove("hide");
+  infoIcon.classList.add("hide");
+  infoIconField.addEventListener('click', hideInfoBox);
 }
 
 function hideInfoBox() {
-  infoBox.style.opacity = 0;
+  infoIconField.removeEventListener('click', hideInfoBox);
   grid.style.opacity = 1;
-  setTimeout(function () {
-    infoBox.style.display = "none";
-  }, 800);
+  infoText.style.opacity = 0;
+  infoBox.classList.remove("show-info-box");
+  infoClose.classList.add("hide");
+  infoIcon.classList.remove("hide");
 }
 
 
@@ -78,5 +82,4 @@ searchInput.addEventListener("keyup", displaySearchResults);
 
 window.addEventListener('resize', extendGrid);
 
-infoIcon.addEventListener('click', showInfoBox);
-infoBox.addEventListener('click', hideInfoBox);
+infoIconField.addEventListener('click', showInfoBox);
