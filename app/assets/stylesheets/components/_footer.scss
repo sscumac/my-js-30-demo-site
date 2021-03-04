@@ -28,9 +28,9 @@
 }
 
 
-#info-box .text {
-  opacity: 0;
-  transition: opacity 1s;
+#info-box {
+  // opacity: 0;
+  // transition: opacity 1s;
 }
 
 @media only screen and (max-width: 980px ) {
@@ -38,6 +38,7 @@
     bottom: 200px;
     width: 50vw;
     display: none;
+    opacity: 0;
     padding: 100px;
     transition: all 1s;
     height: 25vh;
@@ -54,6 +55,7 @@
     bottom: 100px;
     width: 25vw;
     display: none;
+    opacity: 0;
     padding: 100px;
     transition: all 1s;
     height: 25vh;

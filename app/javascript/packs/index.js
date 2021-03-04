@@ -54,21 +54,19 @@ function findMatch(search, cards) {
 // functions for footer
 
 function showInfoBox() {
-  infoText.style.transition = "opacity 1s";
-  // setTimeout(function () {
-  //   infoText.style.opacity = 1;
-  // }, 200);
   infoBox.style.display = "block";
-  infoText.style.opacity = 1;
+  setTimeout(function () {
+    infoBox.style.opacity = 1;
+  }, 50);
   grid.style.opacity = 0.1;
 }
 
 function hideInfoBox() {
-  infoText.style.opacity = 0;
+  infoBox.style.opacity = 0;
   grid.style.opacity = 1;
-  // setTimeout(function () {
-  infoBox.style.display = "none";
-  // }, 1000);
+  setTimeout(function () {
+    infoBox.style.display = "none";
+  }, 800);
 }
 
 
