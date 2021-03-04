@@ -54,12 +54,12 @@ function findMatch(search, cards) {
 // functions for footer
 
 function showInfoBox() {
-  infoBox.style.display = "block";
-  console.log(infoText);
-  infoText.style.opacity = 1;
+  infoText.style.transition = "opacity 1s";
   // setTimeout(function () {
   //   infoText.style.opacity = 1;
-  // }, 500);
+  // }, 200);
+  infoBox.style.display = "block";
+  infoText.style.opacity = 1;
   grid.style.opacity = 0.1;
 }
 
@@ -67,7 +67,7 @@ function hideInfoBox() {
   infoText.style.opacity = 0;
   grid.style.opacity = 1;
   // setTimeout(function () {
-  //   infoBox.style.display = "none";
+  infoBox.style.display = "none";
   // }, 1000);
 }
 
