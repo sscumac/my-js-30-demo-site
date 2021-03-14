@@ -26,5 +26,6 @@ challenge_12 = Challenge.create(name: "the secret code", number: 12)
 challenge_13 = Challenge.create(name: "Slide in on Scroll", number: 13)
 challenge_14 = Challenge.create(name: "Object and Array - Copy vs. Reference", number: 14)
 challenge_15 = Challenge.create(name: "LocalStorage and Event delegation", number: 15)
+challenge_16 = Challenge.create(name: "Mouse Move Shadow", number: 16)
 
 

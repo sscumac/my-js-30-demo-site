@@ -1,0 +1,92 @@
+
+<body>
+
+  <div class="hero">
+    <div class="message">
+      <p class="ok">This page includes sound files</p>
+      <div class="button">ok</div>
+    </div>
+
+    <h1 contenteditable>❇disco!</h1>  
+
+    <audio src="https://res.cloudinary.com/dbuzojczr/video/upload/v1615748110/sinty__disco_nrbopo.mp3" id="sinty"></audio>
+  </div>
+
+  <style>
+
+  <%# @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap'); %>
+  
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+    opacity: 0.4;
+    transition: opacity 1s;
+  }
+
+  .message {
+    /* background-color: rgba(0,0,0,0.8); */
+    color: black;
+    font-family: "Zilla Slab";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black 3px solid;
+    /* border-radius: 5px; */
+    padding: 10px;
+    transition: all 1s;
+    z-index: 10;
+    position: fixed;
+    top: 25vh;
+  }
+
+  .button {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: rgb(255, 0, 255, 0.7);
+  }
+
+  .hide {
+    opacity: 0;
+    top: -12vh;
+  }
+
+  #back-text {
+    color: black;
+  }
+
+  .back {
+    filter: none;
+    opacity: 0.85;
+  }
+
+
+  </style>
+
+
+</body>
