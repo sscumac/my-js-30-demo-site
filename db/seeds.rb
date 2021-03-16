@@ -28,5 +28,6 @@ challenge_14 = Challenge.create(name: "Object and Array - Copy vs. Reference", n
 challenge_15 = Challenge.create(name: "LocalStorage and Event delegation", number: 15)
 challenge_16 = Challenge.create(name: "Mouse Move Shadow", number: 16)
 challenge_17 = Challenge.create(name: "Sort Without Articles", number: 17)
+challenge_18 = Challenge.create(name: "Adding Up Times with Reduce", number: 18)
 
 
