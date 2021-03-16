@@ -4,21 +4,38 @@
   z-index: 10;
   top: 4vh;
   left: 4vw;
-  
+  opacity: 0.5;
 }
 
-a:hover + #back-text {
-  display: block;
+#back-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#back-text {
-  display: none;
-  font-size: 24px;
-  color: white;
-  font-family: zilla slab;
-  font-weight: lighter;
-  position: fixed;
-	top: 8vh;
-  left: 3.5vw;
+@media only screen and (max-width: 800px) {
+    .back {
+      position: unset;
+      margin-top: 2vh;
+    }
+} 
+
+// a:hover + #back-text {
+//   display: block;
+// }
+
+.back:hover {
+  opacity: 0.85;
 }
+
+// #back-text {
+//   display: none;
+//   font-size: 24px;
+//   color: white;
+//   font-family: zilla slab;
+//   font-weight: lighter;
+//   position: fixed;
+// 	top: 8vh;
+//   left: 3.5vw;
+// }
 

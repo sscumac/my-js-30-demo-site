@@ -22,11 +22,13 @@
   height: 100%;
   opacity: 0.7 !important;
   transition: all 0.8s;
+  outline: 3px solid white;
 }
 
 .challenge-card:hover {
   opacity: 0.85 !important;
-  box-shadow: 0px 0px 70px 10px #cccccc;
+  // box-shadow: 0px 0px 70px 10px #cccccc;
+  outline: 3px solid rgba(0, 0, 0, 0.85);
 }
 
 
@@ -62,7 +64,7 @@
     grid-template-columns: repeat(1, 1fr);
     width: 75vw;
     // column-gap: 5%; 
-    row-gap: 20px;
+    row-gap: 40px;
     position: sticky;
     top: 30vh;
   }
@@ -74,7 +76,7 @@
     grid-template-columns: repeat(2, 1fr);
     width: 75vw;
     column-gap: 5%;
-    row-gap: 12%;
+    row-gap: 2%;
     position: sticky;
     top: 30vh;
   }
@@ -86,7 +88,7 @@
     grid-template-columns: repeat(3, 1fr);
     width: 75vw;
     column-gap: 5%;
-    row-gap: 12%;
+    row-gap: 2%;
     position: sticky;
     top: 30vh;
   }
@@ -98,7 +100,7 @@
   grid-template-columns: repeat(4, 1fr);
   width: 75vw;
   column-gap: 5%;
-  row-gap: 12%;
+  row-gap: 4%;
   position: sticky;
   top: 30vh;
   }
