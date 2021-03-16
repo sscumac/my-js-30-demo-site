@@ -1,0 +1,67 @@
+<body>
+
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 900;
+      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+    }
+
+    p {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: normal;
+      text-transform: none;
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+
+    /* @media only screen and (max-width: 400px) {
+      p {
+        width: 350px;
+      }
+    } */
+
+    #bands {
+      list-style: inside square;
+      font-size: 20px;
+      /* background: white; */
+      width: 350px;
+      margin: auto;
+      padding: 0;
+      /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05); */
+      list-style-type: none;
+    }
+    
+    #bands li {
+      /* border-bottom: 1px solid #efefef; */
+      padding: 8px 20px;
+      background: rgb(255,255,255,0.6);
+    }
+    
+    #bands li:last-child {
+      border-bottom: 0;
+    }
+
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+
+  </style>
+
+  <p>Just click anywhere to sort list (articles ignored)</p>
+  <ul id="bands"></ul>
+
+</body>
