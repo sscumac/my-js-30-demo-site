@@ -29,5 +29,6 @@ challenge_15 = Challenge.create(name: "LocalStorage and Event delegation", numbe
 challenge_16 = Challenge.create(name: "Mouse Move Shadow Dance", number: 16)
 challenge_17 = Challenge.create(name: "Sort Without Articles", number: 17)
 challenge_18 = Challenge.create(name: "Adding Up Times with Reduce", number: 18)
+challenge_19 = Challenge.create(name: "Webcam Fun", number: 19)
 
 
