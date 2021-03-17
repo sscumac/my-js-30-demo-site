@@ -82,8 +82,9 @@ extendGrid();
 
 // event listeners
 
-searchInput.addEventListener("input", togglePlaceholder);
+
 searchInput.addEventListener("keyup", displaySearchResults);
+searchInput.addEventListener("input", togglePlaceholder);
 
 window.addEventListener('resize', extendGrid);
 // window.addEventListener('click', togglePlaceholder);
