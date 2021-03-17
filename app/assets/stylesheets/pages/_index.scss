@@ -6,14 +6,19 @@ body {
   overflow-y: scroll;
 }
 
-.page {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  // overflow: hidden;
+.placeholder-search {
+  position: absolute;
+  font-family: roboto;
+  opacity: 0.3;
+  // font-weight: 100;
+  letter-spacing: 0.3em;
+  font-size: 20px;
 }
 
 .search-field {
+  background-color: unset;
+  color: grey;
+  z-index: 10;
   outline: none;
   border-bottom: 1px solid black;
   border-top: none;
@@ -21,8 +26,23 @@ body {
   border-right: none;
   // width: 25vw;
   letter-spacing: 0.3em;
-  font-size: 24px;
+  font-size: 20px;
+  transition: all 0.3s;
+  // opacity: 0.5;
 }
+
+.search-field:active {
+  background-color: white;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // overflow: hidden;
+}
+
+
 
 a {
   text-decoration: none;
@@ -41,8 +61,9 @@ a {
 }
 
 .search-wrapper {
+  position: relative;
   height: 150px;
-  width: 75vw;
+  // width: 75vw;
   display: flex;
   align-items: center;
   justify-content: center;

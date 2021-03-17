@@ -73,13 +73,19 @@ function hideInfoBox() {
   infoIcon.classList.remove("hide");
 }
 
+function togglePlaceholder() {
+  (searchInput.value) ? searchInput.style.backgroundColor = "white" : searchInput.style.backgroundColor = "unset";
+}
+
 
 extendGrid();
 
 // event listeners
 
+searchInput.addEventListener("input", togglePlaceholder);
 searchInput.addEventListener("keyup", displaySearchResults);
 
 window.addEventListener('resize', extendGrid);
+// window.addEventListener('click', togglePlaceholder);
 
 infoIconField.addEventListener('click', showInfoBox);

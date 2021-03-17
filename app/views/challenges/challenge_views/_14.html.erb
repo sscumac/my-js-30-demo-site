@@ -11,7 +11,6 @@
 
   .back {
     filter: none;
-    opacity: 0.85;
   }
 
   .message {
@@ -27,8 +26,8 @@
 
 <body>
 
-<p class="message">This session was about exploring the differences between 
-a copy and a reference of arrays and objects. please see the code below:</p>
+<p class="message">This session is about exploring the differences between 
+a copy and a reference of arrays and objects. check the code below:</p>
 
 <p id="js-code">
 <code>
@@ -43,20 +42,18 @@ console.log(string, string2);<br>
 string2 = "different word";<br>
 
 console.log(string, string2); // string2 updated as expected<br>
-
+<br>
 
 // Let's say we have an array<br>
 const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];<br>
-
+<br>
 // and we want to make a copy of it.<br>
 
 const team = players;<br>
 
 console.log(players, team);<br>
-
+<br>
 // You might think we can just do something like this:<br>
-
-// team[3] = "baby";<br>
 
 // console.log(team);<br>
 // console.log(players); // the original array is updated too as it always references back! not like strings/numbers/boolean<br>
@@ -73,19 +70,19 @@ console.log(players, team);<br>
 
 const teamCopy1 = team.slice(); // and the original array (team) will still be the same<br>
 
-
+<br>
 // one way<br>
 
 // or create a new array and concat the old one in<br>
 
 const teamCopy2 = team.concat();<br>
-
+<br>
 // or use the new ES6 Spread<br>
 
 const teamCopy3 = [...team];<br>
 
 const teamCopy4 = Array.from(team);<br>
-
+<br>
 // now when we update it, the original one isn't changed<br>
 
 // The same thing goes for objects, let's say we have a person object<br>
@@ -95,17 +92,17 @@ const person = {<br>
   name: 'Wes Bos',<br>
   age: 80<br>
 };<br>
-
+<br>
 // and think we make a copy:<br>
 
 // how do we take a copy instead?<br>
 
 const personCopy1 = Object.assign({}, person, { age: 34, number: 777 }); // (empty target, source array, keys to be changed)<br>
-
+<br>
 // We will hopefully soon see the object ...spread<br>
-
+<br>
 const personCopy2 = { ...person }; // it works now!<br>
-
+<br>
 // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.<br>
 
 const deepPerson = {<br>
@@ -118,7 +115,7 @@ const deepPerson = {<br>
 };<br>
 
 const deepPersonCopy = { ...deepPerson }; // it will copy the object but the deep part (social) is still referenced to the original and will update that one too<br>
-
+<br>
 // the "clone deep" function (from the web) will do it <br>
 
 // poormans deep clone<br>
