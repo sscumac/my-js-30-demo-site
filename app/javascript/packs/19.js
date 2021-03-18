@@ -34,8 +34,17 @@ function paintToCanvas() {
 
   return setInterval(() => {  // with return you have access to it when you ever want to stop it from painting
     ctx.drawImage(video, 0, 0, width, height);
-    const pixels = ctx.getImageData(0, 0, width, height);
-    console.log(pixels);
+    // take pixels out
+    let pixels = ctx.getImageData(0, 0, width, height); // representing a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255
+    // mess with them
+    // pixels = redEffect(pixels);
+    pixels = greenScreen(pixels);
+    // pixels = rgbSplit(pixels);
+    ctx.globalAlpha = 0.2; // transparency to what is drawn (ghosting effect)
+    // put them back in
+    ctx.putImageData(pixels, 0, 0);
+    // console.log(pixels);
+    // debugger;
   }, 100);
 }
 
@@ -50,16 +59,66 @@ function takePhoto() {
   link.href = data;
   
   link.setAttribute("download", "handsome");
-  // link.textContent = "Download Image";
   link.innerHTML = `<img src="${data}" alt="Handsome Person" />`;
   console.log(link);
   strip.insertBefore(link, strip.firstChild);
   // 
 }
 
+function redEffect(pixels) {
+  // loop over pixel array 
+  for(let i = 0; i <= pixels.data.length; i += 4) {   // for large arrays for() is wiser
+    // console.log(pixels[i]);
+    pixels.data[i + 0] = pixels.data[i + 0] + 200; // RED
+    pixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
+    pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // Blue
+  }
+  return pixels;
+}
+
+function rgbSplit(pixels) {
+  for (let i = 0; i <= pixels.data.length; i += 4) {   // for large arrays for() is wiser
+    pixels.data[i - 150] = pixels.data[i + 0];  // RED
+    pixels.data[i + 100] = pixels.data[i + 1]; // GREEN
+    pixels.data[i - 150] = pixels.data[i + 2];  // Blue
+  }
+  return pixels;
+}
+
+function greenScreen(pixels) {
+  const levels = {};
+
+  document.querySelectorAll('.rgb input').forEach((input) => {
+    levels[input.name] = input.value; // key - value -pair
+  });
+
+  console.log(levels);
+
+  // lets check what the rgb values for ech pixel are
+  for (i = 0; i < pixels.data.length; i = i + 4) {
+    red = pixels.data[i + 0];
+    green = pixels.data[i + 1];
+    blue = pixels.data[i + 2];
+    alpha = pixels.data[i + 3];
+
+    if (red >= levels.rmin
+      && green >= levels.gmin
+      && blue >= levels.bmin
+      && red <= levels.rmax
+      && green <= levels.gmax
+      && blue <= levels.bmax) {
+      // we take all the values between min/max out
+      pixels.data[i + 3] = 0; // the transparency value
+    }
+  }
+
+  return pixels;
+}
+
 video.addEventListener('canplay', paintToCanvas);
 
 getVideo();
+// redEffect(pixels);
 
 // listeners
 
