@@ -17,6 +17,8 @@
     max-width: 150rem;
     margin: 2rem auto;
     border-radius: 2px;
+    display: flex;
+    flex-direction: column;
   }
 
   /*clearfix*/
@@ -66,8 +68,8 @@
 
   <div class="photobooth">
     <div class="controls">
-      <button onClick="takePhoto()">Take Photo</button>
-<!--       <div class="rgb">
+      <button id="photo">Take Photo</button>
+       <div class="rgb">
         <label for="rmin">Red Min:</label>
         <input type="range" min=0 max=255 name="rmin">
         <label for="rmax">Red Max:</label>
@@ -86,7 +88,7 @@
         <input type="range" min=0 max=255 name="bmin">
         <label for="bmax">Blue Max:</label>
         <input type="range" min=0 max=255 name="bmax">
-      </div> -->
+      </div>
     </div>
 
     <canvas class="photo"></canvas>
@@ -96,6 +98,5 @@
 
   <audio class="snap" src="https://res.cloudinary.com/dbuzojczr/video/upload/v1615978101/snap_vb4sxp.mp3" hidden></audio>
 
-  <script src="scripts.js"></script>
 
 </body>
