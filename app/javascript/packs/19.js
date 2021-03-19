@@ -8,10 +8,12 @@ const snap = document.querySelector('.snap');
 
 const photoButton = document.getElementById("photo");
 const redButton = document.getElementById("red");
+const splitButton = document.getElementById("split");
 
 const ghostingInput = document.querySelector(".ghosting-setting input");
 
 let redMode = 0;
+let split = 0;
 
 // functions
 function getVideo() {
@@ -46,12 +48,13 @@ function paintToCanvas() {
     // mess with them
     if (redMode === 1) {
       pixels = redEffect(pixels);
+    } else if (split === 1) {
+      pixels = rgbSplit(pixels);
     } else {
       pixels = greenScreen(pixels);
     }
-    // pixels = rgbSplit(pixels);
     // put them back in
-    // console.log(red);
+    // console.log(redMode, split);
     ctx.putImageData(pixels, 0, 0);
     // console.log(pixels);
     // debugger;
@@ -59,6 +62,9 @@ function paintToCanvas() {
 }
 
 function takePhoto() {
+  
+  // toggleSplit;
+  // console.log(split);
   // play the sound
   snap.currentTime = 0; // makes the sound start from beginning everytime you click
   snap.play();
@@ -79,7 +85,7 @@ function redEffect(pixels) {
   // loop over pixel array 
   for(let i = 0; i <= pixels.data.length; i += 4) {   // for large arrays for() is wiser
     // console.log(pixels[i]);
-    pixels.data[i + 0] = pixels.data[i + 0] + 200; // RED
+    pixels.data[i + 0] = pixels.data[i + 0] + 120; // RED
     pixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
     pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // Blue
   }
@@ -133,6 +139,10 @@ function toggleRed() {
   (redMode === 0) ? redMode = 1 : redMode = 0;
 }
 
+function toggleSplit() {
+  (split === 0) ? split = 1 : split = 0;
+}
+
 ghostingInput.addEventListener("change", ghosting);
 
 video.addEventListener('canplay', paintToCanvas);
@@ -144,5 +154,6 @@ getVideo();
 
 photoButton.addEventListener("click", takePhoto);
 redButton.addEventListener("click", toggleRed);
+splitButton.addEventListener("click", toggleSplit);
 
 

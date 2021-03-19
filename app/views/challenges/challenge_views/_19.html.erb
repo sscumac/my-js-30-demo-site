@@ -25,12 +25,17 @@
 
   .rgb {
     min-width: 440px;
-    margin-top: 10px;
+    <%# margin-top: 10px; %>
   }
 
   .ghosting-setting {
     margin-top:10px;
   }
+
+  .ghosting-setting label {
+    margin-left: 20px;
+  }
+  
 
   .photobooth {
     background: white;
@@ -53,12 +58,14 @@
   }
 
   #photo {
-    width: 100px;
+    width: 210px;
     float: left;
     color: white;
     background-color: #FF0101;
     <%# border-color: red; %>
-    border-style: none;
+    border: 2px #FF0101 solid;
+    border-radius: 2px;
+    <%# border-style: none; %>
     cursor: pointer;
     transition: all 0.2s;
     font-family: roboto;
@@ -69,13 +76,47 @@
     width: 100px;
     float: left;
     color: white;
+    border: 2px black solid;
+    border-radius: 2px;
     background-color: black;
     <%# border-color: red; %>
-    border-style: none;
+    <%# border-style: none; %>
     cursor: pointer;
     transition: all 0.2s;
     font-family: roboto;
     margin-top: 10px;
+  }
+
+  #split {
+    width: 100px;
+    float: left;
+    background: none;
+    border: 2px black solid;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+
+  #rainbow-text {
+    font-weight: 800;
+    margin: 0;
+  }
+
+  #rainbow-text:hover {
+    background: red;
+    background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
+    background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+    background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+   #split:active {
+    opacity: 0.5;
   }
 
   #photo:focus {
@@ -133,13 +174,29 @@
     height: 10px;
   }
 
+  p {
+    margin: unset;
+  }
+
+  .buttons > button {
+    margin-right: 10px;
+  } 
+
+  .buttons {
+    margin-top: 20px;
+  }
+
+  .ghosting-input {
+    width: 80px !important;
+  }
+
 </style>
 
 <body>
 
   <div class="photobooth">
     <div class="controls">
-      
+       <p>take specific color ranges out:</p>
        <div class="rgb">
         <label for="rmin">red Min</label>
         <input type="range" min=0 max=255 name="rmin">
@@ -160,12 +217,17 @@
         <label for="bmax">blue Max</label>
         <input type="range" min=0 max=255 name="bmax">
       </div>
-      <div class="ghosting-setting">
-        <label for="ghosting">ghosting</label>
-        <input type="range" min=1 max=99 name="ghosting" value="1">
+      
+      <div class="buttons">
+        <button id="red">red effect</button>
+        <button id="split"><p id="rainbow-text">split effect</p></button>
+        <div class="ghosting-setting">
+          <label for="ghosting">ghosting</label>
+          <input class="ghosting-input" type="range" min=1 max=99 name="ghosting" value="1">
+        </div>
       </div>
       <button id="photo">take photo</button>
-      <button id="red">red effect</button>
+      
     </div>
 
     <canvas class="photo"></canvas>
