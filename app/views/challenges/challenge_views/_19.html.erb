@@ -16,13 +16,33 @@
     background-size: cover;
   }
 
+  .controls {
+    padding: 20px;
+    opacity: 0.85;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rgb {
+    min-width: 440px;
+    margin-top: 10px;
+  }
+
+  .ghosting-setting {
+    margin-top:10px;
+  }
+
   .photobooth {
     background: white;
-    width: 75%;
+    width: 40%;
+    min-width: 480px;
     margin: 2rem auto;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
+    font-family: courier new;
+    font-size: 18px;
+    
   }
 
   /*clearfix*/
@@ -32,10 +52,48 @@
     clear: both;
   }
 
-  .photo {
-    width: 100%;
+  #photo {
+    width: 100px;
     float: left;
+    color: white;
+    background-color: #FF0101;
+    <%# border-color: red; %>
+    border-style: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: roboto;
+    margin-top: 10px;
   }
+
+  #red {
+    width: 100px;
+    float: left;
+    color: white;
+    background-color: black;
+    <%# border-color: red; %>
+    border-style: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: roboto;
+    margin-top: 10px;
+  }
+
+  #photo:focus {
+    outline: none;
+  }
+
+  #red:focus {
+    outline: none;
+  }
+
+  #photo:active {
+    opacity: 0.5;
+  }
+
+  #red:active {
+    opacity: 0.5;
+  }
+
 
   .player {
     position: absolute;
@@ -66,33 +124,48 @@
   .strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
   .strip a:nth-child(5n+5) img { transform: rotate(12deg); }
 
+  <%# input {
+    margin-left: 50px;
+  } %>
+
+  input[type='range'] {
+    width: 100px;
+    height: 10px;
+  }
+
 </style>
 
 <body>
 
   <div class="photobooth">
     <div class="controls">
-      <button id="photo">Take Photo</button>
+      
        <div class="rgb">
-        <label for="rmin">Red Min:</label>
+        <label for="rmin">red Min</label>
         <input type="range" min=0 max=255 name="rmin">
-        <label for="rmax">Red Max:</label>
+        <label for="rmax">red Max</label>
         <input type="range" min=0 max=255 name="rmax">
 
         <br>
 
-        <label for="gmin">Green Min:</label>
+        <label for="gmin">green Min</label>
         <input type="range" min=0 max=255 name="gmin">
-        <label for="gmax">Green Max:</label>
+        <label for="gmax">green Max</label>
         <input type="range" min=0 max=255 name="gmax">
 
         <br>
 
-        <label for="bmin">Blue Min:</label>
+        <label for="bmin">blue Min</label>
         <input type="range" min=0 max=255 name="bmin">
-        <label for="bmax">Blue Max:</label>
+        <label for="bmax">blue Max</label>
         <input type="range" min=0 max=255 name="bmax">
       </div>
+      <div class="ghosting-setting">
+        <label for="ghosting">ghosting</label>
+        <input type="range" min=1 max=99 name="ghosting" value="1">
+      </div>
+      <button id="photo">take photo</button>
+      <button id="red">red effect</button>
     </div>
 
     <canvas class="photo"></canvas>

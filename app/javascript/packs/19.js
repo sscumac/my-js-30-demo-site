@@ -7,6 +7,11 @@ const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
 
 const photoButton = document.getElementById("photo");
+const redButton = document.getElementById("red");
+
+const ghostingInput = document.querySelector(".ghosting-setting input");
+
+let redMode = 0;
 
 // functions
 function getVideo() {
@@ -32,16 +37,21 @@ function paintToCanvas() {
 
   // ctx.drawImage(video, 0, 0, width, height);
 
+  
+
   return setInterval(() => {  // with return you have access to it when you ever want to stop it from painting
     ctx.drawImage(video, 0, 0, width, height);
     // take pixels out
     let pixels = ctx.getImageData(0, 0, width, height); // representing a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255
     // mess with them
-    // pixels = redEffect(pixels);
-    pixels = greenScreen(pixels);
+    if (redMode === 1) {
+      pixels = redEffect(pixels);
+    } else {
+      pixels = greenScreen(pixels);
+    }
     // pixels = rgbSplit(pixels);
-    ctx.globalAlpha = 0.2; // transparency to what is drawn (ghosting effect)
     // put them back in
+    // console.log(red);
     ctx.putImageData(pixels, 0, 0);
     // console.log(pixels);
     // debugger;
@@ -92,7 +102,7 @@ function greenScreen(pixels) {
     levels[input.name] = input.value; // key - value -pair
   });
 
-  console.log(levels);
+  // console.log(levels);
 
   // lets check what the rgb values for ech pixel are
   for (i = 0; i < pixels.data.length; i = i + 4) {
@@ -115,6 +125,16 @@ function greenScreen(pixels) {
   return pixels;
 }
 
+function ghosting() {
+  ctx.globalAlpha = (((parseInt(ghostingInput.value, 10))*-1)+100)/100;
+}
+
+function toggleRed() {
+  (redMode === 0) ? redMode = 1 : redMode = 0;
+}
+
+ghostingInput.addEventListener("change", ghosting);
+
 video.addEventListener('canplay', paintToCanvas);
 
 getVideo();
@@ -123,5 +143,6 @@ getVideo();
 // listeners
 
 photoButton.addEventListener("click", takePhoto);
+redButton.addEventListener("click", toggleRed);
 
 
