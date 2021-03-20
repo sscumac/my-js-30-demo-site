@@ -3,6 +3,24 @@
     box-sizing: border-box;
   }
 
+  :root {
+    --me-width: 640px;
+  }
+
+  .player {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width:200px;
+  }
+
+  input[type='range'] {
+    width: 100px;
+    height: 10px;
+  }
+
+  
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
@@ -24,7 +42,7 @@
   }
 
   .rgb {
-    min-width: 440px;
+    min-width: var(--me-width)-10px;
     <%# margin-top: 10px; %>
   }
 
@@ -36,18 +54,22 @@
     margin-left: 20px;
   }
   
+  canvas {
+    width: var(--me-width);
+  }
 
   .photobooth {
     background: white;
     width: 40%;
-    min-width: 480px;
+    <%# min-width: 480px; %>
     margin: 2rem auto;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     font-family: courier new;
     font-size: 18px;
-    
+    align-items: center;
+    width: var(--me-width);
   }
 
   /*clearfix*/
@@ -85,6 +107,10 @@
     transition: all 0.2s;
     font-family: roboto;
     margin-top: 10px;
+  }
+
+  #red:hover {
+    color: #FF0101;
   }
 
   #split {
@@ -136,12 +162,9 @@
   }
 
 
-  .player {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width:200px;
-  }
+  
+
+  
 
   /*
     Strip!
@@ -169,10 +192,7 @@
     margin-left: 50px;
   } %>
 
-  input[type='range'] {
-    width: 100px;
-    height: 10px;
-  }
+  
 
   p {
     margin: unset;
@@ -188,6 +208,35 @@
 
   .ghosting-input {
     width: 80px !important;
+  }
+
+  @media (max-width: 850px) {
+    .player {
+     width: 100px;
+    }
+  }
+
+  @media (max-width: 660px) {
+	  :root {
+		  --me-width: 350px;
+	  }
+    input[type='range'] {
+      width: 180px
+    }
+    .rgb {
+      line-height: 3rem;
+    }
+    .ghosting-setting {
+      padding-top: 35px;
+    }
+    .buttons {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    #photo {
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
 </style>
