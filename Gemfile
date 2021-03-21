@@ -9,6 +9,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'cloudinary', '~> 1.16.0'
 
+gem 'font-awesome-sass'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use sqlite3 as the database for Active Record
