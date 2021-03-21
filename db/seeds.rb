@@ -30,5 +30,6 @@ challenge_16 = Challenge.create(name: "Mouse Move Shadow Dance", number: 16)
 challenge_17 = Challenge.create(name: "Sort Without Articles", number: 17)
 challenge_18 = Challenge.create(name: "Adding Up Times with Reduce", number: 18)
 challenge_19 = Challenge.create(name: "Frantic Photo Booth", number: 19)
+challenge_20 = Challenge.create(name: "Speech Regognition", number: 20)
 
 
