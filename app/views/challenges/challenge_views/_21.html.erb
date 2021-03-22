@@ -1,27 +1,35 @@
 <body>
 
-    <nav>
-      <ul class="menu">
-        <li><a href="">Home</a></li>
-        <li><a href="">Order Status</a></li>
-        <li><a href="">Tweets</a></li>
-        <li><a href="">Read Our History</a></li>
-        <li><a href="">Contact Us</a></li>
-      </ul>
-    </nav>
+    <div class="message">
+      <p class="ok">Hover over links and tabs. and see.</p>
+      <div class="button">ok</div>
+    </div>
 
-    <div class="wrapper">
-      <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
-      <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
-      <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
-      <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
-      <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
+    <div class="content">
+      <nav>
+        <ul class="menu">
+          <li><a href="">Home</a></li>
+          <li><a href="">Order Status</a></li>
+          <li><a href="">Tweets</a></li>
+          <li><a href="">Read Our History</a></li>
+          <li><a href="">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="wrapper">
+        <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+        <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+        <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
+        <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
+        <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
+      </div>
     </div>
   </body>
   <style>
-      html {
+
+    html {
       box-sizing: border-box;
-      }
+    }
 
     *, *:before, *:after {
       box-sizing: inherit;
@@ -31,11 +39,46 @@
       min-height: 100vh;
       margin: 0; /* Important! */
       font-family: sans-serif;
-      background:
+      <%# background:
         linear-gradient(45deg, hsla(340, 100%, 55%, 1) 0%, hsla(340, 100%, 55%, 0) 70%),
         linear-gradient(135deg, hsla(225, 95%, 50%, 1) 10%, hsla(225, 95%, 50%, 0) 80%),
         linear-gradient(225deg, hsla(140, 90%, 50%, 1) 10%, hsla(140, 90%, 50%, 0) 80%),
-        linear-gradient(315deg, hsla(35, 95%, 55%, 1) 100%, hsla(35, 95%, 55%, 0) 70%);
+        linear-gradient(315deg, hsla(35, 95%, 55%, 1) 100%, hsla(35, 95%, 55%, 0) 70%); %>
+    }
+
+    .content {
+      opacity: 0.4;
+      transition: all .5s;
+    }
+
+    .button {
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .message {
+      /* background-color: rgba(0,0,0,0.8); */
+      color: black;
+      font-family: "Zilla Slab";
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: black 3px solid;
+      /* border-radius: 5px; */
+      padding: 10px;
+      transition: all .5s;
+      z-index: 10;
+      margin-left: auto;
+      margin-right: auto;
+      width: 280px;
+      background-color: white;
+    }
+
+    .hide {
+      opacity: 0;
     }
 
     .wrapper {
@@ -47,10 +90,10 @@
     }
 
     a {
-      text-decoration: none;
-      color: black;
-      background: rgba(0,0,0,0.05);
-      border-radius: 20px;
+      <%# text-decoration: none; %>
+      color: #7d7dcf;
+      <%# background: rgba(0,0,0,0.05); %>
+      <%# border-radius: 20px; %>
     }
 
     .highlight {
@@ -63,7 +106,8 @@
       z-index: -1;
       border-radius: 20px;
       display: block;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border: 1px solid black;
+      <%# box-shadow: 0 0 10px rgba(0,0,0,0.2); %>
     }
 
     .menu {
@@ -80,5 +124,10 @@
       margin: 0 20px;
       color: black;
     }
+
+    .back {
+      filter: none;
+    }
+
   </style>
  
