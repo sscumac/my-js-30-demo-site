@@ -9,6 +9,7 @@ const infoText = document.querySelector("#info-box .text");
 const infoBox = document.getElementById("info-box");
 const infoClose = document.getElementById("close");
 const infoIcon = document.getElementById("info");
+const placeholderText = document.querySelector(".placeholder-search");
 
 // extend grid dynamically
 function extendGrid() {
@@ -74,7 +75,18 @@ function hideInfoBox() {
 }
 
 function togglePlaceholder() {
-  (searchInput.value) ? searchInput.style.backgroundColor = "white" : searchInput.style.backgroundColor = "unset";
+  if(searchInput.value) {
+    searchInput.style.backgroundColor = "white";
+    // placeholderText.style.transform = `translate(10px)`;
+    // setTimeout(delayTranslate, 1000);
+  } else {
+    searchInput.style.backgroundColor = "unset";
+    // placeholderText.style.transform = `translate(0px)`;
+  }
+  // function delayTranslate() {
+  //   placeholderText.style.transform = `translate(0px)`;
+  // }
+  
 }
 
 
