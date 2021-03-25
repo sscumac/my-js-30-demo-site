@@ -32,5 +32,6 @@ challenge_18 = Challenge.create(name: "Adding Up Times with Reduce", number: 18)
 challenge_19 = Challenge.create(name: "Frantic Photo Booth", number: 19)
 challenge_20 = Challenge.create(name: "Speech Regognition", number: 20)
 challenge_21 = Challenge.create(name: "Highlight Links by Hover", number: 21)
-challenge_22 = Challenge.create(name: "Text to Speech Party", number: 22)
+challenge_22 = Challenge.create(name: "Text to Speech", number: 22)
+challenge_23 = Challenge.create(name: "Slide into Sticky Nav", number: 23)
 
