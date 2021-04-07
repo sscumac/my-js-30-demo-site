@@ -1,12 +1,15 @@
 // dom
-const slider = document.querySelector(".items");
+const slider = document.querySelector(".gallery");
 
 let isDown = false;
 let startX;
 let scrollLeft;
 
 
+
+
 // function
+
 
 
 // eventlisteners
@@ -32,6 +35,6 @@ slider.addEventListener("mousemove", (eve) => {
   if (!isDown) return;
   eve.preventDefault;
   const mouseX = eve.pageX - slider.offsetLeft; // same as above but we need to recalculate offset everytime we move the mouse
-  const walk = (mouseX - startX) * 2; // makes scrolling faster
+  const walk = (mouseX - startX) * 1.5; // makes scrolling faster
   slider.scrollLeft = scrollLeft - walk; // since walk is 0, we need to substract from initial scrollLeft. otherwise slider would jump back.
 });

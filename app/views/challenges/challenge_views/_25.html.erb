@@ -1,31 +1,136 @@
 <body>
-  <div class="items">
-    <div class="item item1">01</div>
-    <div class="item item2">02</div>
-    <div class="item item3">03</div>
-    <div class="item item4">04</div>
-    <div class="item item5">05</div>
-    <div class="item item6">06</div>
-    <div class="item item7">07</div>
-    <div class="item item8">08</div>
-    <div class="item item9">09</div>
-    <div class="item item10">10</div>
-    <div class="item item11">11</div>
-    <div class="item item12">12</div>
-    <div class="item item13">13</div>
-    <div class="item item14">14</div>
-    <div class="item item15">15</div>
-    <div class="item item16">16</div>
-    <div class="item item17">17</div>
-    <div class="item item18">18</div>
-    <div class="item item19">19</div>
-    <div class="item item20">20</div>
-    <div class="item item21">21</div>
-    <div class="item item22">22</div>
-    <div class="item item23">23</div>
-    <div class="item item24">24</div>
-    <div class="item item25">25</div>
+  <div class="gallery">
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+     <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    
   </div>
+
+  <div class="message">
+      <i class="fas fa-chevron-left"></i>
+      <p class="text"> drag the rays </p> 
+      <i class="fas fa-chevron-right"></i>
+  </div>
+
   
+
+
+<style>
+    html {
+  box-sizing: border-box;
+  background: url('https://source.unsplash.com/6t7x7BKE8mo/2000x2000') fixed;
+  background-size: cover;
+  /* background-color: rgb(27, 27, 27); */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+.gallery {
+  height: 150vh;
+  padding: 100px;
+  width: 100%;
+  border: 1px solid white;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: none;
+  <%# cursor: pointer; %>
+  font-size: 18px;
+  perspective: 1px;
+}
+
+.gallery.active {
+  background: rgba(255,255,255,0.05);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.ray {
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: rgba(0,0,0,0.15);
+}
+
+.ray:nth-child(10n+1) { background: #277da1}
+.ray:nth-child(10n+2) { background: #F9C74F}
+.ray:nth-child(10n+3) { background: #43AA8B}
+.ray:nth-child(10n+4) { background: #F8961E}
+.ray:nth-child(10n+5) { background: #4D908E}
+.ray:nth-child(10n+6) { background: #F94144}
+.ray:nth-child(10n+7) { background: #F9844A}
+.ray:nth-child(10n+8) { background: #577590}
+.ray:nth-child(10n+9) { background: #F3722C}
+.ray:nth-child(10n+10) { background: #90BE6D}
+
+.ray:nth-child(even) { transform: scaleX(1.31) rotateY(40deg); }
+.ray:nth-child(odd) { transform: scaleX(1.31) rotateY(-40deg); }
+
+.message {
+    color: white;
+    font-family: "Zilla Slab";
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    position: fixed;
+    top: 80vh;
+    left: 42vw;
+    font-size: 28px;
+  }
+
+  .text {
+    padding: 20px;
+  }
+
+  </style>
+
 </body>
 
