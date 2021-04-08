@@ -36,4 +36,5 @@ challenge_22 = Challenge.create(name: "Text to Speech", number: 22)
 challenge_23 = Challenge.create(name: "Slide into Sticky Nav", number: 23)
 challenge_24 = Challenge.create(name: "Bubbling, Capture and Once", number: 24)
 challenge_25 = Challenge.create(name: "Drag the Rays", number: 25)
+challenge_26 = Challenge.create(name: "Fancy Navbar", number: 26)
 
