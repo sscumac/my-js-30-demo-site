@@ -52,8 +52,9 @@
   
   html {
   font-size: 10px;
-  background: url("https://source.unsplash.com/gcDwzUGuUoI") bottom center; /* that's it!! */
+  <%# background: url("https://source.unsplash.com/naFHFLV5cqU") bottom center; /* that's it!! */ %>
   background-size: cover;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255,  0.2)), url("https://source.unsplash.com/IW5Bm4rB9OA");
   }
 
   body,html {
@@ -80,14 +81,15 @@
   width: 10rem;
   text-align: center;
   color: white;
-  background: rgba(0,0,0,0.4);
-  text-shadow: 0 0 .5rem black;
+  background: #ff9d00;
+  <%# text-shadow: 0 0 .5rem black; %>
   cursor: pointer;
+  margin-bottom: 250px;
   }
 
   .playing {
   transform: scale(1.1);
-  border-color: #ff9d00;
+  border-color: white;
   box-shadow: 0 0 1rem #ff9d00;
   }
 
@@ -100,7 +102,7 @@
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: .1rem;
-  color: #ff9d00;
+  <%# color: #ff9d00; %>
   }
 
   @media only screen and (max-width: 1500px) {   
