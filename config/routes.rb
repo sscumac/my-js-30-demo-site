@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :challenges, only: [:show]
 
+  get "message", to: "cronjob#message"
 
 end
