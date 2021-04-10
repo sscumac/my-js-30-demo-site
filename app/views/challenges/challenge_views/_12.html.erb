@@ -1,30 +1,125 @@
-<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
-
-<div id="info-12">
-  <p class="text">type the secret code into your keyboard!</p>
-  <p class="text">hint: it is a yellow fruit - if correct you will notice!</p>
-  <p class="text">you can do it as often as you want ;)</p>
-</div>
-
 <style>
-  #info-12 {
-    display: block;
-    opacity: 1;
-    font-family: courier new;
-    position: fixed;
-    left: 10%;
-    bottom: 20%;
-  }
+html {
+  box-sizing: border-box;
+  background: url("https://source.unsplash.com/XwO0raJ2dQM/1920x1280") center no-repeat;
+  <%# background: url("https://source.unsplash.com/XwO0raJ2dQM/640x426") center no-repeat; %>
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
 
-  #info-12 .text {
-    opacity: 1;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-  #back-text {
+#icon {
+  width: 200px;
+  padding-bottom: 50px;
+}
+
+.wrapper {
+  padding: 20px;
+  max-width: 350px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 200;
+}
+
+.plates {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+.plates li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  font-weight: 100;
+  display: flex;
+}
+
+.plates label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.plates input {
+  display: none;
+}
+
+.plates input + label:before {
+  content: "⬜️";
+  margin-right: 10px;
+}
+
+.plates input:checked + label:before {
+  content: "🌮";
+}
+
+.add-items {
+  margin-top: 20px;
+}
+
+.add-items input {
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.check-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check-buttons > p {
+  margin-top: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  color: rgb(119, 119, 119);
+}
+
+ .check-buttons > p:hover {
     color: black;
   }
 
-  .back {
-    filter: none;
+  @media only screen and (max-width: 800px) {
+    .back {
+      position: fixed;
+      top: 2vh;
+      left: 46%;
+    }
   }
+  
 </style>
+<body>
+ 
+  <img id= "icon" src="https://res.cloudinary.com/dbuzojczr/image/upload/v1618049691/mcdonalds_woiq2d.svg">
+  <div class="wrapper">
+    <h2>LOCAL TAPAS</h2>
+    <p></p>
+    <ul class="plates">
+      <li>Loading Tapas...</li>
+    </ul>
+    <div class="check-buttons">
+      <p class="clear">clear all</p><p class="check">check all</p><p class="uncheck">uncheck all</p>
+    </div>
+    <form class="add-items">
+      <input type="text" name="item" placeholder="Item Name" required>
+      <input type="submit" value="+ Add Item">
+    </form>
+  </div>
+
+
+</body>

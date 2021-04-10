@@ -1,15 +1,172 @@
-<p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
-
 <style>
-
-body {
-  text-align: center;
-}
-#back-text {
-    color: black;
+  html {
+    box-sizing: border-box;
+    background: #ffc600;
+    font-family: 'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
   }
 
-  .back {
-    filter: none;
+  body {
+    margin: 0;
   }
+
+
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  .panels {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .panel {
+    background: #6B0F9C;
+    /* box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1); */
+    color: white;
+    text-align: center;
+    align-items: center;
+    /* Safari transitionend event.propertyName === flex */
+    /* Chrome + FF transitionend event.propertyName === flex-grow */
+    transition:
+      font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+      flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+      background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    /* all panels are evenly distributed in width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  .panel1 {
+    background-image: url(https://source.unsplash.com/1j18807_ul0/1500x1500);
+  }
+
+  .panel2 {
+    background-image: url(https://source.unsplash.com/79mNMAvSORg/1500x1500);
+  }
+
+  .panel3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)), url(https://source.unsplash.com/rNEqv7ThqwI/1500x1500);
+  }
+
+  .panel4 {
+    background-image: url(https://source.unsplash.com/jin4W1HqgL4/1500x1500);
+  }
+
+  .panel5 {
+    background-image: url(https://source.unsplash.com/lbmrrNgq2lo/1500x1500);
+  }
+
+  /* Flex Children */
+  .panel>* {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .panel p {
+    /* text-transform: uppercase; */
+    /* font-family: 'Archivo Black', sans-serif; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    /* text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45); */
+    font-size: 2em;
+  }
+
+  .panel>*:first-child {
+    transform: translateY(-100%);
+  }
+
+  .panel.in>*:first-child {
+    transform: none;
+  }
+
+  .panel>*:last-child {
+    transform: translateY(100%);
+  }
+
+  .panel.in>*:last-child {
+    transform: none;
+  }
+
+  .panel p:nth-child(2) {
+    font-size: 4em;
+  }
+
+  .panel.open {
+    font-size: 40px;
+    flex: 5;
+  }
+
+   #info-5 {
+    display: block;
+    opacity: 1;
+    font-family: courier new;
+    position: fixed;
+    left: 15%;
+    top: 4%;
+  }
+
+  #info-5 .text {
+    opacity: 1;
+  }
+
+  #info-5 {
+    background-color: white;
+    opacity: 0.9;
+    padding: 0 20px;
+  }
+
+  #back-area {
+    position: absolute;
+  }
+
 </style>
+
+
+<div class="panels">
+  <div id="info-5">
+    <p class="text">just click anywhere</p>
+  </div>
+  <div class="panel panel1">
+    <p>Hey</p>
+    <p>Let's</p>
+    <p>Dance</p>
+  </div>
+  <div class="panel panel2">
+    <p>Give</p>
+    <p>Take</p>
+    <p>Receive</p>
+  </div>
+  <div class="panel panel3">
+    <p>Experience</p>
+    <p>It</p>
+    <p>Today</p>
+  </div>
+  <div class="panel panel4">
+    <p>Give</p>
+    <p>All</p>
+    <p>You can</p>
+  </div>
+  <div class="panel panel5">
+    <p>Life</p>
+    <p>In</p>
+    <p>Motion</p>
+    <!-- <div class="some">Test Test</div> -->
+  </div>
+</div>

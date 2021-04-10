@@ -1,56 +1,45 @@
-const canvas = document.querySelector("#draw");
-const ctx = canvas.getContext('2d'); // you always draw on the context not the canvas element
+// DOM elements
 
-canvas.width = window.innerWidth; // make canvas as big as window
-canvas.height = window.innerHeight;
+// select all checkboxes
+const checklist = document.querySelector(".inbox");
+const checkboxes = document.querySelectorAll("input");
 
-ctx.strokeStyle = "#BADA55";
-ctx.lineJoin = "round";
-ctx.lineCap = "round";
-ctx.lineWidth = 1;
-ctx.globalCompositeOperation = 'overlay'; // blending mode ;)
+const clickArray = [...Array(2)];
 
-let isDrawing = false; // flag to tell when to actually draw 
-let lastX = 0; // helps us to draw a line by ystoring last mouse (x/Y)
-let lastY = 0;
-let hue = 0;
-let direction = true;
+// -- functions --
 
-function draw(event) {
-  if (!isDrawing) return; // stop function from running when mouse not pressed
+// check the boxes inbetween
+function checkTheBoxes(checkboxes, index1, index2) {
+  let index = 1;
+  checkboxes.forEach((check) => {
+    if (index2 > index1) {
+      if (index >= index1 && index <= index2) check.checked = true;
+    } else {
+      if (index >= index2 && index <= index1) check.checked = true;
+    }
+    index++;
+  });
+};
 
-  // ctx.lineWidth = hue;
-  ctx.strokeStyle = `hsl(${hue}, 10%, 50%)`;
-  ctx.beginPath(); // Start a new path
-  ctx.moveTo(lastX, lastY); // Move the pen to (x, y)
-  ctx.lineTo(event.offsetX, event.offsetY); // Draw a line to (x, y)
-  ctx.stroke(); // // Render the path
-  [lastX, lastY] = [event.offsetX, event.offsetY]; // sets two variables in one line (destructuring an array)
-  hue++;
-  if (hue >= 360) hue = 0;
-  console.log(direction);
-  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-    direction = !direction; // flips the direction true/false
-  }
-  if (direction) {
-    ctx.lineWidth++;
-  } else {
-    ctx.lineWidth--;
-  }
+// get the last click position and write it into array
+function getClickPositions(eve) {
+  let index = 1;
+  checkboxes.forEach((check) => {
+    if (eve.target === check) clickIndex(index);
+    index++;
+  });
+  if (eve.shiftKey) checkTheBoxes(checkboxes, clickArray[0], clickArray[1]);
+};
 
-  console.log(ctx.lineWidth);
+// write the array
+function clickIndex(index) {
+  clickArray.push(index);
+  clickArray.shift();
 }
 
-const message = document.querySelector(".message");
-
-// eventListeners
-canvas.addEventListener("mousedown", (event) => {
-  isDrawing = true;
-  message.classList.add("hide");
-  [lastX, lastY] = [event.offsetX, event.offsetY]; // lastX/Y upadet with starting position before drawing
+// eventlistener
+checkboxes.forEach((check) => {
+  check.addEventListener("click", getClickPositions);
 });
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("mouseup", () => isDrawing = false);
-canvas.addEventListener("mouseout", () => isDrawing = false);
 
 

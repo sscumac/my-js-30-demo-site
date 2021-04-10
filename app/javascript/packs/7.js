@@ -1,43 +1,69 @@
-// ## Array Cardio Day 2
+const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
 
-const people = [
-  { name: 'Wes', year: 1988 },
-  { name: 'Kait', year: 1986 },
-  { name: 'Irv', year: 1970 },
-  { name: 'Lux', year: 2015 }
-];
+function makeGreen() {
+  const p = document.querySelector('p');
+  p.style.color = '#BADA55';
+  p.style.fontSize = '50px';
+}
 
-const comments = [
-  { text: 'Love this!', id: 523423 },
-  { text: 'Super good', id: 823423 },
-  { text: 'You are the best', id: 2039842 },
-  { text: 'Ramen is my fav food ever', id: 123523 },
-  { text: 'Nice Nice Nice!', id: 542328 }
-];
+// Regular
+console.log("Hello Baby!");
 
-// Some and Every Checks
-// Array.prototype.some() // is at least one person 19 or older?
-currentYear = new Date().getFullYear();
-const oneOlder19 = people.some((guy) => guy.year < (currentYear - 19));
+// Interpolated
+console.log("Hello %s !", "you")
+// console.log(`Hello ${const} `)
 
-console.log({ oneOlder19 }); // {} shows the name of the variable as well
+// Styled
+console.log(`%c I am awesome`, `font-size: 50px; background: pink; text-shadow: 5px 5px 0 green`)
 
-// Array.prototype.every() // is everyone 19 or older?
-const allOlder19 = people.every((guy) => guy.year < (currentYear - 19));
-console.log(allOlder19);
+// warning!
+console.warn("nooooo");
 
-// Array.prototype.find()
-// Find is like filter, but instead returns just the one you are looking for
-// find the comment with the ID of 823423
-const targetID = "823423";
-const result = comments.find((entry) => (entry.id === parseInt(targetID)));
-console.log(result);
+// Error :|
+console.error("shit");
 
-// Array.prototype.findIndex()
-// Find the comment with this ID
-// delete the comment with the ID of 823423
-const targetID2 = "542328";
-const index = comments.findIndex((entry) => (entry.id === parseInt(targetID2)));
-// console.log(index);
-comments.splice(index, 1);
-console.table(comments);
+// Info
+console.info("The weather is nice today!");
+
+// Testing
+const p = document.querySelector("p");
+
+console.assert(p.classList.contains("love"), "it is wrong!"); // only fires if something is wrong, so no if statement needed
+
+// clearing
+// console.clear();
+
+// Viewing DOM Elements
+console.log(p);
+console.dir(p);
+
+// Grouping together
+dogs.forEach((dog) => {
+  console.groupCollapsed(`${dog.name}`);
+  console.log(`The dog ${dog.name} is pretty dirty!`);
+  console.log(`It is ${dog.age} years old!`);
+  console.groupEnd();
+});
+
+// counting
+console.count("love");
+console.count("love");
+console.count("love");
+console.count("hug");
+console.count("love");
+console.count("love");
+console.count("love");
+console.count("hug");
+
+// timing
+console.time("fetching data");
+fetch("https://api.github.com/users/wesbos")
+  .then(data => data.json())
+  .then(data => {
+    console.timeEnd("fetching data");
+    console.log(data);
+  });
+
+// table
+
+console.table(dogs);

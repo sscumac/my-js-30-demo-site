@@ -1,94 +1,60 @@
 // DOM
 
-const player = document.querySelector(".player");
-const video = document.getElementById("video");
+const sliderImages = document.querySelectorAll(".slide-in");
+const text = document.querySelector(".site-wrap");
 
-const progress = player.querySelector(".progress");
-const progressBar = player.querySelector(".progress__filled");
-
-const playButton = player.querySelector(".toggle");
-
-const skipButtons = player.querySelectorAll("[data-skip]");
-const ranges = player.querySelectorAll(".player__slider");
-
-const fullScreenButton = document.getElementById("fullscreenImg");
+const shownImages = document.getElementsByClassName("active");
 
 
 // functions
-function togglePlay() {
-  // video.paused ? video.play() : video.pause(); // ternary
-  video[video.paused ? "play" : "pause"](); // [] puts compresses the above
+
+function debounce(func, wait = 20, immediate = true) {  // blocks a function for given time in ms (from the internet)
+  var timeout;
+  return function () {
+    var context = this, args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
 }
 
-function toggleButton() {
-  const icon = this.paused ? '►' : '❚ ❚' // "this" because it refers to video which has a paused method
-  playButton.textContent = icon;
-  console.log(this.currentTime);
-}
-
-function skip() {
-  
-  const skipNum = parseInt(this.dataset.skip);
-  console.log(skipNum);
-  // video.currentTime += skipNum;
-  video.currentTime = 12;
-  console.log(video.currentTime);
-}
-
-function handleRangeUpdate() {
-  video[this.name] = this.value; // value/name is an input attribut! and playbackRate/volume one of video
-}
-
-function handleProgress() {
-  // console.log(window.getComputedStyle(progressBar).flexBasis); // when reading a value written in CSS (and not in-line as style=blabla)
-  progressBar.style.flexBasis = `${(video.currentTime / video.duration) * 100}%`;
-  // console.log("handleProgress");
-}
-
-function scrub(eve) {
-  // const progressWidth = parseInt(window.getComputedStyle(progress).width.split("p")[0]);
-  const progressPos = (video.duration / progress.offsetWidth) * eve.offsetX;
-  video.currentTime = progressPos;
-  // console.log(eve);
-}
-
-function fullScreen() {
-  if (!document.fullscreenElement) {
-    player.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
+function whiteText() {
+  setTimeout(() => {
+    text.classList.add("white");
+  }, 400);
+  setTimeout(() => {
+    text.classList.remove("white");
+  }, 800);
 }
 
 
 
-// event listeners
 
-playButton.addEventListener("click", togglePlay);
-video.addEventListener("pause", toggleButton);
-video.addEventListener("play", toggleButton);
-video.addEventListener("click", togglePlay);
-video.addEventListener("timeupdate", handleProgress);
+function slideIn() {
+  sliderImages.forEach((slideImage) => {
+    const slideInAt = (window.innerHeight + window.scrollY) - (slideImage.height / 2);
+    const imageBottom = slideImage.offsetTop + slideImage.height;
+    const isHalfShown = slideInAt > slideImage.offsetTop; // you'll get a boolean 
+    const isScrolledOver = imageBottom < window.scrollY;
 
-skipButtons.forEach((button) => {
-  button.addEventListener("click", skip);
-});
+    let shownImagesScore = shownImages.length;
 
-ranges.forEach((range) => {
-  range.addEventListener("change", handleRangeUpdate);
-  range.addEventListener("mousemove", handleRangeUpdate);
-})
+    if (isHalfShown && !isScrolledOver) {
+      slideImage.classList.add("active");
+      if (shownImagesScore != shownImages.length) whiteText();
+    } else {
+      slideImage.classList.remove("active");
+    }
+  });
+}
 
-let mousedown = false;
+// listeners
 
-progress.addEventListener("mousedown", () => mousedown = true); // second parameter needs to be a function
-progress.addEventListener("mouseup", () => mousedown = false);
-
-progress.addEventListener("click", scrub);  // need to select the progressBar container, as the bar itself has changing size
-progress.addEventListener("mousemove", (eve) => { if (mousedown === true) scrub(eve) });  // need to pass the event as scrub function needs to know the initial position   
-
-fullScreenButton.addEventListener("click", fullScreen);
-
-
+window.addEventListener("scroll", debounce(slideIn));
 
 

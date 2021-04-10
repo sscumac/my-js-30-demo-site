@@ -1,73 +1,117 @@
 <body>
+  <p class="message">just click on the mic and speak</p>
+  <div class="container"> 
+
+    <%# <i id="record" class="fas fa-microphone"></i> %>
+    <%= inline_svg_tag "microphone.svg", size: "40", class: "listen-button" %>
+
+    <div class="gap"></div>
+
+    <div class="words"></div>
+
+  </div>
+<script type="text/javascript" src="20.js">
+  
+
+
+</script>
+
 
   <style>
 
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&display=swap');
+    .message {
+      <%# position: absolute; %>
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .hide {
+      color: white ;
+      display: block !important;
+    }
+
+    html {
+      font-size: 10px;
+    }
 
     body {
-      margin: 0;
-      font-family: 'Noto Sans SC', sans-serif;
-      font-weight: 900;
-      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      min-height: 100vh;
-      text-transform: uppercase;
+      background: rgb(255,255,255, 0.9);
+      font-family: 'helvetica neue';
+      font-weight: 200;
+      font-size: 20px;
+    }
+
+    .container {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+
+    .listen-button {
+      width: 50px;
+      transition: all 0.3s;
+    }
+
+    .words {
+      <%# width: 0px; %>
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 2px;
+      <%# padding: 1rem 2rem 1rem 5rem; %>
+      <%# background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px; %>
+      background-size: 100% 3rem;
+      position: relative;
+      line-height: 3rem;
+      outline: none;
+      transition: border 0.5s;
+      text-align: center;
+    }
+
+    @keyframes border-pulse {
+      0% {
+        border-color: white;
+      }
+
+      50% {
+        border-color: black;
+      }
+
+      100% {
+        border-color: white;
+      }
+    }
+
+    .active {
+      color: #f04141;
+    }
+
+    .gap {
+      width: 0px;
+      transition: all 0.8s;
+      margin-top: 40px;
+      border-top: 2px black solid;
+      color: transparent;
+    }
+
+
+    .texting {
+      width: 200px;
+      animation: border-pulse 2s alternate ease-in-out infinite;
+      <%# animation: border-pulse 1.5s alternate ease-in-out infinite; %>
     }
 
     p {
-      font-family: 'Courier New', Courier, monospace;
-      font-weight: normal;
-      text-transform: none;
-      margin-top: 30px;
-      padding: 0 20px;
+      margin: 0 0 3rem;
     }
-
-    /* @media only screen and (max-width: 400px) {
-      p {
-        width: 350px;
-      }
-    } */
-
-    #bands {
-      list-style: inside square;
-      font-size: 20px;
-      /* background: white; */
-      width: 350px;
-      margin: auto;
-      padding: 0;
-      /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05); */
-      list-style-type: none;
-    }
-    
-    #bands li {
-      /* border-bottom: 1px solid #efefef; */
-      padding: 8px 20px;
-      background: rgb(255,255,255,0.6);
-    }
-    
-    #bands li:last-child {
-      border-bottom: 0;
-    }
-
-
-    a {
-      color: #ffc600;
-      text-decoration: none;
-    }
-
 
     .back {
-      filter: none;
+    filter: none;
     }
-
-
+    
   </style>
-
-  <p>Just click anywhere to sort list (articles ignored)</p>
-  <ul id="bands"></ul>
 
 </body>

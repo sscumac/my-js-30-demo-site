@@ -1,59 +1,159 @@
 // dom
 
-const hero = document.querySelector(".hero");
-const text = hero.querySelector("h1");
-const walk = 100 // 100px which will be the area to drag the mouse
-const button = document.querySelector(".button");
-const messageBox = document.querySelector(".message");
+const video = document.querySelector('.player');
+const canvas = document.querySelector('.photo');
+const ctx = canvas.getContext('2d'); // to actually render it
+const strip = document.querySelector('.strip');
+const snap = document.querySelector('.snap');
+
+const photoButton = document.getElementById("photo");
+const redButton = document.getElementById("red");
+const splitButton = document.getElementById("split");
+
+const ghostingInput = document.querySelector(".ghosting-setting input");
+
+let redMode = 0;
+let split = 0;
+
 // functions
-
-function shadow(eve) {
-  const height = hero.offsetHeight;
-  const width = hero.offsetWidth;
-  // can be done as one-liner as well:
-  // const { offsetHeight: height, offsetWidth: width } = hero;
-
-  let x = eve.offsetX;
-  let y = eve.offsetY;
-  // let {offsetX: x, offsetWidth: y} = eve
-
-  const sinty = document.getElementById("sinty");
-
-  if (eve.target !== this) {
-    x = x + eve.target.offsetLeft; // offsetLeft: pixels from the upper left to the left of parent
-    y = y + eve.target.offsetTop; // offsetTop: pixels from the top to the top of parent
-  }
-
-  const walkX = ((x / width) * walk) - (walk / 2);
-  const walkY = ((y /height)*walk) - (walk/2);
-
-  text.style.textShadow = `
-    ${walkX}px ${walkY}px 0 rgb(255, 0, 255, 0.7),
-    ${walkX * -1}px ${walkY}px 0 rgb(0, 255, 255, 0.7),
-    ${walkX}px ${walkY * -1}px 0 rgb(255, 255, 0, 0.7)`; 
-
-    
-  let walkXpos = walkX;
-  let walkYpos = walkY;
-  if (walkX < 0) walkXpos = walkX * -1;
-  if (walkY < 0) walkYpos = walkY * -1; 
-
-  if (walkXpos > 5 || walkYpos > 5) {
-      sinty.volume = (walkXpos + walkYpos) / 100;
-      sinty.play();
-  } else {
-    sinty.pause();
-  }
+function getVideo() {
+  navigator.mediaDevices.getUserMedia({ video:true, audio:false}) // navigator.mediaDevices provides access to connected media input devices (webcam, microphones, screensharing)
+    .then(localMediaStream => {
+      console.log(localMediaStream);
+      video.srcObject = localMediaStream; // converts the mediastream in something the videoplayer can understand
+      video.play();
+    })
+    .catch(err => {
+      console.error("oh comon' !!", err);
+    });
 }
 
-function start() {
-  hero.addEventListener("mousemove", shadow);
-  messageBox.classList.add("hide");
-  text.style.opacity = 0.85;
+function paintToCanvas() {
+  const width = video.videoWidth; // the intrinsic width (resolution)
+  const height = video.videoHeight;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  console.log(canvas);
+
+  // ctx.drawImage(video, 0, 0, width, height);
+
+  
+
+  return setInterval(() => {  // with return you have access to it when you ever want to stop it from painting
+    ctx.drawImage(video, 0, 0, width, height);
+    // take pixels out
+    let pixels = ctx.getImageData(0, 0, width, height); // representing a one-dimensional array containing the data in the RGBA order, with integer values between 0 and 255
+    // mess with them
+    if (redMode === 1) {
+      pixels = redEffect(pixels);
+    } else if (split === 1) {
+      pixels = rgbSplit(pixels);
+    } else {
+      pixels = greenScreen(pixels);
+    }
+    // put them back in
+    // console.log(redMode, split);
+    ctx.putImageData(pixels, 0, 0);
+    // console.log(pixels);
+    // debugger;
+  }, 100);
 }
 
+function takePhoto() {
+  
+  // toggleSplit;
+  // console.log(split);
+  // play the sound
+  snap.currentTime = 0; // makes the sound start from beginning everytime you click
+  snap.play();
 
-// event listeners 
+  // get the data out of the canvas
+  const data = canvas.toDataURL("image/jpeg");
+  const link = document.createElement('a');
+  link.href = data;
+  
+  link.setAttribute("download", "handsome");
+  link.innerHTML = `<img src="${data}" alt="Handsome Person" />`;
+  console.log(link);
+  strip.insertBefore(link, strip.firstChild);
+  // 
+}
 
-button.addEventListener("click", start)
+function redEffect(pixels) {
+  // loop over pixel array 
+  for(let i = 0; i <= pixels.data.length; i += 4) {   // for large arrays for() is wiser
+    // console.log(pixels[i]);
+    pixels.data[i + 0] = pixels.data[i + 0] + 120; // RED
+    pixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
+    pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // Blue
+  }
+  return pixels;
+}
+
+function rgbSplit(pixels) {
+  for (let i = 0; i <= pixels.data.length; i += 4) {   // for large arrays for() is wiser
+    pixels.data[i - 150] = pixels.data[i + 0];  // RED
+    pixels.data[i + 100] = pixels.data[i + 1]; // GREEN
+    pixels.data[i - 150] = pixels.data[i + 2];  // Blue
+  }
+  return pixels;
+}
+
+function greenScreen(pixels) {
+  const levels = {};
+
+  document.querySelectorAll('.rgb input').forEach((input) => {
+    levels[input.name] = input.value; // key - value -pair
+  });
+
+  // console.log(levels);
+
+  // lets check what the rgb values for ech pixel are
+  for (i = 0; i < pixels.data.length; i = i + 4) {
+    red = pixels.data[i + 0];
+    green = pixels.data[i + 1];
+    blue = pixels.data[i + 2];
+    alpha = pixels.data[i + 3];
+
+    if (red >= levels.rmin
+      && green >= levels.gmin
+      && blue >= levels.bmin
+      && red <= levels.rmax
+      && green <= levels.gmax
+      && blue <= levels.bmax) {
+      // we take all the values between min/max out
+      pixels.data[i + 3] = 0; // the transparency value
+    }
+  }
+
+  return pixels;
+}
+
+function ghosting() {
+  ctx.globalAlpha = (((parseInt(ghostingInput.value, 10))*-1)+100)/100;
+}
+
+function toggleRed() {
+  (redMode === 0) ? redMode = 1 : redMode = 0;
+}
+
+function toggleSplit() {
+  (split === 0) ? split = 1 : split = 0;
+}
+
+ghostingInput.addEventListener("change", ghosting);
+
+video.addEventListener('canplay', paintToCanvas);
+
+getVideo();
+// redEffect(pixels);
+
+// listeners
+
+photoButton.addEventListener("click", takePhoto);
+redButton.addEventListener("click", toggleRed);
+splitButton.addEventListener("click", toggleSplit);
+
 

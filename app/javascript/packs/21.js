@@ -1,36 +1,47 @@
-// DOM
+// dom
+const divs = document.querySelectorAll("div");
+const button = document.querySelector("button");
+const bubbleButton = document.querySelector(".bubble");
+const bubbleOutput = document.querySelector(".bubbleOut");
 
-const triggers = document.querySelectorAll("a");
-const highlight = document.createElement("span");
-highlight.classList.add("highlight");
-document.body.append(highlight);
 
-const content = document.querySelector(".content");
-const button = document.querySelector(".button");
-const message = document.querySelector(".message");
 
-// function
+let bubbling = true;
+let capture = false;
 
-function highlightLink() {
-  const linkCoords = this.getBoundingClientRect(); // this is the magic here!
-  console.log(linkCoords);
-  const coords = {
-    top: linkCoords.top + window.scrollY,
-    left: linkCoords.left + window.scrollX
+
+// functions
+
+function logText(eve) {
+  alert(this.classList.value)
+  if (!bubbling) {
+    eve.stopPropagation(); // stops bubbling with the target that was clicked on
   }
-  highlight.style.width = `${linkCoords.width + 6}px`;
-  highlight.style.height = `${linkCoords.height + 6}px`;
-  highlight.style.transform = `translate(${coords.left - 3}px, ${coords.top - 3}px)`;
 }
 
-function start() {
-  triggers.forEach((a) => a.addEventListener("mouseenter", highlightLink));
-  content.style.opacity = 0.85;
-  message.classList.add("hide");
+function toggleBubbling() {
+  bubbling = !bubbling;
+  if (bubbling) {
+    bubbleOutput.innerHTML = " on";
+  } else {
+    bubbleOutput.innerHTML = "off";
+  } 
 }
+
 
 // event listeners
 
-button.addEventListener("click", start);
+bubbleButton.addEventListener("click", toggleBubbling);
+
+button.addEventListener("click", () => {
+  button.style.backgroundColor = "rgb(80, 80, 80)";
+  setTimeout(function delay() { // without delay it would fire alert before button.style
+    alert("click")
+  }, 100)}, {
+    once: true
+});
 
 
+divs.forEach((div)=> div.addEventListener(("click"), logText, {
+    capture: false // capture: true will set the eventhandler on the capturing phase
+}));

@@ -1,290 +1,128 @@
+<body>
+
+    <div class="speechbox">
+
+      <h1>speak my text</h1>
+
+      <select name="voice" id="voices">
+        <option value="">Select A Voice</option>
+      </select>
+      <div class="section">
+        <label for="rate">rate</label>
+        <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+      </div>
+
+      <div class="section">
+        <label for="pitch">pitch</label>
+        <input name="pitch" type="range" min="0" max="2" step="0.1">
+      </div>
+
+      <textarea name="text">Hello! I love JavaScript 🤩</textarea> 
+      <button id="stop">Stop!</button>
+      <button id="speak">Speak</button>
+
+    </div>
+
+</body>
+
 <style>
   html {
+    font-size: 10px;
     box-sizing: border-box;
   }
-
-  :root {
-    --me-width: 640px;
-  }
-
-  .player {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width:200px;
-  }
-
-  input[type='range'] {
-    width: 100px;
-    height: 10px;
-  }
-
-  
 
   *, *:before, *:after {
     box-sizing: inherit;
   }
 
-  html {
-    font-size: 10px;
-    background: rgb(5,0,0,0.85);
-    <%# background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url("https://source.unsplash.com/pPA5ActWLLI/"): %>
-    <%# background: url("https://source.unsplash.com/pPA5ActWLLI/"); /* that's it!! */ %>
-    <%# background-repeat: no-repeat; %>
-    background-size: cover;
-  }
-
-  .controls {
-    padding: 20px;
-    opacity: 0.85;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .rgb {
-    min-width: var(--me-width)-10px;
-    <%# margin-top: 10px; %>
-  }
-
-  .ghosting-setting {
-    margin-top:10px;
-  }
-
-  .ghosting-setting label {
-    margin-left: 20px;
-  }
-  
-  canvas {
-    width: var(--me-width);
-  }
-
-  .photobooth {
-    background: white;
-    width: 40%;
-    <%# min-width: 480px; %>
-    margin: 2rem auto;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-    font-family: courier new;
-    font-size: 18px;
-    align-items: center;
-    width: var(--me-width);
-  }
-
-  /*clearfix*/
-  .photobooth:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
-  #photo {
-    width: 210px;
-    float: left;
-    color: white;
-    background-color: #FF0101;
-    <%# border-color: red; %>
-    border: 2px #FF0101 solid;
-    border-radius: 2px;
-    <%# border-style: none; %>
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: roboto;
-    margin-top: 10px;
-  }
-
-  #red {
-    width: 100px;
-    float: left;
-    color: white;
-    border: 2px black solid;
-    border-radius: 2px;
-    background-color: black;
-    <%# border-color: red; %>
-    <%# border-style: none; %>
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: roboto;
-    margin-top: 10px;
-  }
-
-  #red:hover {
-    color: #FF0101;
-  }
-
-  #split {
-    width: 100px;
-    float: left;
-    background: none;
-    border: 2px black solid;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 10px;
-    padding: 0;
-  }
-
-
-  #rainbow-text {
-    font-weight: 800;
+  body {
     margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+
   }
 
-  #rainbow-text:hover {
-    background: red;
-    background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
-    background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
-    background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
-    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  label {
+    padding-top: 19px;
+    padding-right: 20px;
+    font-size: 16px;
   }
 
-   #split:active {
-    opacity: 0.5;
+  .section {
+    display: flex;
   }
 
-  #photo:focus {
-    outline: none;
-  }
-
-  #red:focus {
-    outline: none;
-  }
-
-  #photo:active {
-    opacity: 0.5;
-  }
-
-  #red:active {
-    opacity: 0.5;
-  }
-
-
-  
-
-  
-
-  /*
-    Strip!
-  */
-
-  .strip {
+  .speechbox {
     padding: 2rem;
-  }
-
-  .strip img {
-    width: 100px;
-    overflow-x: scroll;
-    padding: 0.8rem 0.8rem 2.5rem 0.8rem;
-    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    width: 50rem;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
     background: white;
+    overflow: hidden;
+    z-index: 1;
   }
 
-  .strip a:nth-child(5n+1) img { transform: rotate(10deg); }
-  .strip a:nth-child(5n+2) img { transform: rotate(-2deg); }
-  .strip a:nth-child(5n+3) img { transform: rotate(8deg); }
-  .strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
-  .strip a:nth-child(5n+5) img { transform: rotate(12deg); }
-
-  <%# input {
-    margin-left: 50px;
-  } %>
-
-  
-
-  p {
-    margin: unset;
+  h1 {
+    width: calc(100% + 4rem);
+    margin: -2rem 0 2rem -2rem;
+    padding: .5rem;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 100;
+    font-family: 'Pacifico', cursive;
   }
 
-  .buttons > button {
-    margin-right: 10px;
-  } 
-
-  .buttons {
-    margin-top: 20px;
+  .speechbox input,
+  .speechbox button,
+  .speechbox select,
+  .speechbox textarea {
+    width: 100%;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border: 0;
+    font-size: 2rem;
+    background: #F7F7F7;
+    outline: 0;
   }
 
-  .ghosting-input {
-    width: 80px !important;
+  textarea {
+    height: 20rem;
   }
 
-  @media (max-width: 850px) {
-    .player {
-     width: 100px;
-    }
+  input[type="select"] {
+
   }
 
-  @media (max-width: 660px) {
-	  :root {
-		  --me-width: 350px;
-	  }
-    input[type='range'] {
-      width: 180px
-    }
-    .rgb {
-      line-height: 3rem;
-    }
-    .ghosting-setting {
-      padding-top: 35px;
-    }
-    .buttons {
-      margin-right: auto;
-      margin-left: auto;
-    }
-    #photo {
-      margin-right: auto;
-      margin-left: auto;
-    }
+  .speechbox button {
+    background: white;
+    border: 2px solid;
+    width: 49%;
+    float: left;
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 0;
+    font-size: 2rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .speechbox button:active {
+    opacity: 0.5;
+  }
+
+  .speechbox button:nth-of-type(1) {
+    margin-right: 2%;
+  }
+
+  .back {
+    filter: none;
   }
 
 </style>
-
-<body>
-
-  <div class="photobooth">
-    <div class="controls">
-       <p>take specific color ranges out:</p>
-       <div class="rgb">
-        <label for="rmin">red Min</label>
-        <input type="range" min=0 max=255 name="rmin">
-        <label for="rmax">red Max</label>
-        <input type="range" min=0 max=255 name="rmax">
-
-        <br>
-
-        <label for="gmin">green Min</label>
-        <input type="range" min=0 max=255 name="gmin">
-        <label for="gmax">green Max</label>
-        <input type="range" min=0 max=255 name="gmax">
-
-        <br>
-
-        <label for="bmin">blue Min</label>
-        <input type="range" min=0 max=255 name="bmin">
-        <label for="bmax">blue Max</label>
-        <input type="range" min=0 max=255 name="bmax">
-      </div>
-      
-      <div class="buttons">
-        <button id="red">red effect</button>
-        <button id="split"><p id="rainbow-text">split effect</p></button>
-        <div class="ghosting-setting">
-          <label for="ghosting">ghosting</label>
-          <input class="ghosting-input" type="range" min=1 max=99 name="ghosting" value="1">
-        </div>
-      </div>
-      <button id="photo">take photo</button>
-      
-    </div>
-
-    <canvas class="photo"></canvas>
-    <video class="player"></video>
-    <div class="strip"></div>
-  </div>
-
-  <audio class="snap" src="https://res.cloudinary.com/dbuzojczr/video/upload/v1615978101/snap_vb4sxp.mp3" hidden></audio>
-
-
-</body>

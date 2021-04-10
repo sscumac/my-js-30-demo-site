@@ -1,86 +1,56 @@
+const canvas = document.querySelector("#draw");
+const ctx = canvas.getContext('2d'); // you always draw on the context not the canvas element
 
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+canvas.width = window.innerWidth; // make canvas as big as window
+canvas.height = window.innerHeight;
 
-// DOM
+ctx.strokeStyle = "#BADA55";
+ctx.lineJoin = "round";
+ctx.lineCap = "round";
+ctx.lineWidth = 1;
+ctx.globalCompositeOperation = 'overlay'; // blending mode ;)
 
+let isDrawing = false; // flag to tell when to actually draw 
+let lastX = 0; // helps us to draw a line by ystoring last mouse (x/Y)
+let lastY = 0;
+let hue = 0;
+let direction = true;
 
+function draw(event) {
+  if (!isDrawing) return; // stop function from running when mouse not pressed
 
-
-
-// fetch data from endpoint and put it into an empty array
-
-const cities = [];
-
-fetch(endpoint) // fetch returns a promise object (sth. will evtl. come back from this fetch: pending/rejected/fulfilled)
-  .then(blob => blob.json()) // then method is called on a promise then(onFulfillment, onRejection[opt])
-  .then(data => cities.push(...data)) // spread into push function
-
-
-// -- functions --
-
-
-// function to find search matches
-
-function findMatch(search, cities) {
-  return cities.filter((place) => {
-    const regex = new RegExp(search, "gi"); // create regex with: g(global = check the entire string), i(insensitive);
-    return place.city.match(regex) || place.state.match(regex);
-  })
-};
-
-// function to display matches
-const searchInput = document.querySelector(".search");
-
-
-// function to add points to population
-function numberWithPoints(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
-
-// function to display matching cities
-function displayMatches() {
-  search = this.value;
-  const resultList = document.querySelector(".on");
-  const matches = findMatch(search, cities);
-  if (!search) { // if nothing is typed show hints
-    while (resultList.firstChild) {
-      resultList.removeChild(resultList.lastChild);
-    }
-    resultList.innerHTML = `<li>Filter for a city</li><li>or a state</li>`;
-  } else { // if something is typed show suggestions in list
-    while (resultList.firstChild) { // remove hints (as long as at least one child is there)
-      console.log(resultList.firstChild);
-      resultList.removeChild(resultList.firstChild);
-    } // and add content for each mathcing entry from JSON to suggestions list
-    matches.forEach((place) => {
-      const matchPart = new RegExp(this.value, "gi");
-      const cityName = place.city.replace(matchPart, `<span class="hl">${this.value}</span>`);
-      const stateName = place.state.replace(matchPart, `<span class="hl">${this.value}</span>`);
-      resultList.insertAdjacentHTML("beforeend", `<li>
-      <span> ${cityName}, ${stateName} </span>
-      <span class="pop"> ${numberWithPoints(place.population)} inh. </span> 
-    </li>`);
-    })
+  // ctx.lineWidth = hue;
+  ctx.strokeStyle = `hsl(${hue}, 10%, 50%)`;
+  ctx.beginPath(); // Start a new path
+  ctx.moveTo(lastX, lastY); // Move the pen to (x, y)
+  ctx.lineTo(event.offsetX, event.offsetY); // Draw a line to (x, y)
+  ctx.stroke(); // // Render the path
+  [lastX, lastY] = [event.offsetX, event.offsetY]; // sets two variables in one line (destructuring an array)
+  hue++;
+  if (hue >= 360) hue = 0;
+  console.log(direction);
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction; // flips the direction true/false
   }
-};
-
-function addList() {
-  const list = document.querySelector(".suggestions");
-  list.classList.remove("off");
-  list.classList.add("on");
-}
-
-function removeList() {
-  if (!this.value) {
-    const list = document.querySelector(".suggestions");
-    list.classList.remove("on");
-    list.classList.add("off");
+  if (direction) {
+    ctx.lineWidth++;
+  } else {
+    ctx.lineWidth--;
   }
+
+  console.log(ctx.lineWidth);
 }
+
+const message = document.querySelector(".message");
 
 // eventListeners
-searchInput.addEventListener("focus", addList);
-searchInput.addEventListener("focusout", removeList);
-searchInput.addEventListener("change", displayMatches);
-searchInput.addEventListener("keyup", displayMatches);
+canvas.addEventListener("mousedown", (event) => {
+  isDrawing = true;
+  message.classList.add("hide");
+  [lastX, lastY] = [event.offsetX, event.offsetY]; // lastX/Y upadet with starting position before drawing
+});
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mouseout", () => isDrawing = false);
+
 

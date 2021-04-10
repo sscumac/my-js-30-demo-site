@@ -1,172 +1,131 @@
+<form class="search-form">
+  <input type="text" class="search" placeholder="City or State">
+  <ul class="suggestions off">
+    <li>Filter for a city</li>
+    <li>or a state</li>
+  </ul>
+</form>
+
 <style>
-  html {
-    box-sizing: border-box;
-    background: #ffc600;
-    font-family: 'helvetica neue';
-    font-size: 20px;
-    font-weight: 200;
-  }
 
-  body {
-    margin: 0;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 
+html {
+  box-sizing: border-box;
+  background: #ff5d53;
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+  overflow: hidden; /* Hide scrollbars */
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+}
 
-  .panels {
-    min-height: 100vh;
-    overflow: hidden;
-    display: flex;
-  }
+body {
+  overflow-y: hidden;
+}
 
-  .panel {
-    background: #6B0F9C;
-    /* box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1); */
-    color: white;
-    text-align: center;
-    align-items: center;
-    /* Safari transitionend event.propertyName === flex */
-    /* Chrome + FF transitionend event.propertyName === flex-grow */
-    transition:
-      font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
-      flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
-      background 0.2s;
-    font-size: 20px;
-    background-size: cover;
-    background-position: center;
-    flex: 1;
-    /* all panels are evenly distributed in width */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
-  }
+input {
+  width: 100%;
+  padding: 20px;
+}
 
-  .panel1 {
-    background-image: url(https://source.unsplash.com/1j18807_ul0/1500x1500);
-  }
+.search-form {
+  max-width: 400px;
+  margin: 50px auto;
+}
 
-  .panel2 {
-    background-image: url(https://source.unsplash.com/79mNMAvSORg/1500x1500);
-  }
+input.search {
+  outline: none;
+  margin: 0;
+  text-align: center;
+  /* outline: 0; */
+  border: 0px solid #ffffff;
+  width: 120%;
+  left: -10%;
+  position: relative;
+  top: 10px;
+  z-index: 2;
+  /* border-radius: 5px; */
+  font-size: 40px;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19); */
+}
 
-  .panel3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)), url(https://source.unsplash.com/rNEqv7ThqwI/1500x1500);
-  }
+input.search {
+  outline: none;
+}
 
-  .panel4 {
-    background-image: url(https://source.unsplash.com/jin4W1HqgL4/1500x1500);
-  }
+input.search:focus {
+  /* border: 0px solid #ffffff; */
+  box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+}
 
-  .panel5 {
-    background-image: url(https://source.unsplash.com/lbmrrNgq2lo/1500x1500);
-  }
+.suggestions {
+  margin-top: 10px;
+  padding: 0;
+  z-index: 10;
+  position: relative;
+  font-family: 'Gothic A1', sans-serif;
+  transition: all 1s;
+  font-weight: 500;
+  font-size: 14px;
+  /* height: 100vh; */
+}
 
-  /* Flex Children */
-  .panel>* {
-    margin: 0;
-    width: 100%;
-    transition: transform 0.5s;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.search::placeholder {
+  opacity: 0.3;
+}
 
-  .panel p {
-    /* text-transform: uppercase; */
-    /* font-family: 'Archivo Black', sans-serif; */
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    /* text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45); */
-    font-size: 2em;
-  }
+.suggestions li {
+  background: white;
+  list-style: none;
+  
+  /* border-bottom: 1px solid #D8D8D8; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.14); */
+  /* margin-top: 10px; */
+  padding: 12px;
+  
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
 
-  .panel>*:first-child {
-    transform: translateY(-100%);
-  }
+.suggestions li:nth-child(even) {
+  /* transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001); */
+  /* background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%); */
+}
 
-  .panel.in>*:first-child {
-    transform: none;
-  }
+.suggestions li:nth-child(odd) {
+  /* transform: perspective(100px) rotateX(-3deg) translateY(3px); */
+  /* background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%); */
+}
 
-  .panel>*:last-child {
-    transform: translateY(100%);
-  }
+span.pop {
+  font-size: 10px;
+  text-transform: lowercase;
+  opacity: 0.5;
+}
 
-  .panel.in>*:last-child {
-    transform: none;
-  }
+.hl {
+  background: #ffc600;
+}
 
-  .panel p:nth-child(2) {
-    font-size: 4em;
-  }
+.off {
+  /* opacity: 0; */
+  /* transform: translate(0px,-83px); */
+  height: 0px;
+  overflow: hidden;
+  transition: all 2.25s cubic-bezier(0, 1.2, 0.32, 1.07);
+}
 
-  .panel.open {
-    font-size: 40px;
-    flex: 5;
-  }
-
-   #info-5 {
-    display: block;
-    opacity: 1;
-    font-family: courier new;
-    position: fixed;
-    left: 15%;
-    top: 4%;
-  }
-
-  #info-5 .text {
-    opacity: 1;
-  }
-
-  #info-5 {
-    background-color: white;
-    opacity: 0.9;
-    padding: 0 20px;
-  }
-
-  #back-area {
-    position: absolute;
-  }
+.on {
+  height: 100vh;
+  overflow: hidden;
+  transition: all 3s cubic-bezier(0.85, 0.65, 0.26, 2.88);
+}
 
 </style>
-
-
-<div class="panels">
-  <div id="info-5">
-    <p class="text">just click anywhere</p>
-  </div>
-  <div class="panel panel1">
-    <p>Hey</p>
-    <p>Let's</p>
-    <p>Dance</p>
-  </div>
-  <div class="panel panel2">
-    <p>Give</p>
-    <p>Take</p>
-    <p>Receive</p>
-  </div>
-  <div class="panel panel3">
-    <p>Experience</p>
-    <p>It</p>
-    <p>Today</p>
-  </div>
-  <div class="panel panel4">
-    <p>Give</p>
-    <p>All</p>
-    <p>You can</p>
-  </div>
-  <div class="panel panel5">
-    <p>Life</p>
-    <p>In</p>
-    <p>Motion</p>
-    <!-- <div class="some">Test Test</div> -->
-  </div>
-</div>

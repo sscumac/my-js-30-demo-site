@@ -1,69 +1,94 @@
-const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+// DOM
 
-function makeGreen() {
-  const p = document.querySelector('p');
-  p.style.color = '#BADA55';
-  p.style.fontSize = '50px';
+const player = document.querySelector(".player");
+const video = document.getElementById("video");
+
+const progress = player.querySelector(".progress");
+const progressBar = player.querySelector(".progress__filled");
+
+const playButton = player.querySelector(".toggle");
+
+const skipButtons = player.querySelectorAll("[data-skip]");
+const ranges = player.querySelectorAll(".player__slider");
+
+const fullScreenButton = document.getElementById("fullscreenImg");
+
+
+// functions
+function togglePlay() {
+  // video.paused ? video.play() : video.pause(); // ternary
+  video[video.paused ? "play" : "pause"](); // [] puts compresses the above
 }
 
-// Regular
-console.log("Hello Baby!");
+function toggleButton() {
+  const icon = this.paused ? '►' : '❚ ❚' // "this" because it refers to video which has a paused method
+  playButton.textContent = icon;
+  console.log(this.currentTime);
+}
 
-// Interpolated
-console.log("Hello %s !", "you")
-// console.log(`Hello ${const} `)
+function skip() {
+  
+  const skipNum = parseInt(this.dataset.skip);
+  console.log(skipNum);
+  // video.currentTime += skipNum;
+  video.currentTime = 12;
+  console.log(video.currentTime);
+}
 
-// Styled
-console.log(`%c I am awesome`, `font-size: 50px; background: pink; text-shadow: 5px 5px 0 green`)
+function handleRangeUpdate() {
+  video[this.name] = this.value; // value/name is an input attribut! and playbackRate/volume one of video
+}
 
-// warning!
-console.warn("nooooo");
+function handleProgress() {
+  // console.log(window.getComputedStyle(progressBar).flexBasis); // when reading a value written in CSS (and not in-line as style=blabla)
+  progressBar.style.flexBasis = `${(video.currentTime / video.duration) * 100}%`;
+  // console.log("handleProgress");
+}
 
-// Error :|
-console.error("shit");
+function scrub(eve) {
+  // const progressWidth = parseInt(window.getComputedStyle(progress).width.split("p")[0]);
+  const progressPos = (video.duration / progress.offsetWidth) * eve.offsetX;
+  video.currentTime = progressPos;
+  // console.log(eve);
+}
 
-// Info
-console.info("The weather is nice today!");
+function fullScreen() {
+  if (!document.fullscreenElement) {
+    player.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
 
-// Testing
-const p = document.querySelector("p");
 
-console.assert(p.classList.contains("love"), "it is wrong!"); // only fires if something is wrong, so no if statement needed
 
-// clearing
-// console.clear();
+// event listeners
 
-// Viewing DOM Elements
-console.log(p);
-console.dir(p);
+playButton.addEventListener("click", togglePlay);
+video.addEventListener("pause", toggleButton);
+video.addEventListener("play", toggleButton);
+video.addEventListener("click", togglePlay);
+video.addEventListener("timeupdate", handleProgress);
 
-// Grouping together
-dogs.forEach((dog) => {
-  console.groupCollapsed(`${dog.name}`);
-  console.log(`The dog ${dog.name} is pretty dirty!`);
-  console.log(`It is ${dog.age} years old!`);
-  console.groupEnd();
+skipButtons.forEach((button) => {
+  button.addEventListener("click", skip);
 });
 
-// counting
-console.count("love");
-console.count("love");
-console.count("love");
-console.count("hug");
-console.count("love");
-console.count("love");
-console.count("love");
-console.count("hug");
+ranges.forEach((range) => {
+  range.addEventListener("change", handleRangeUpdate);
+  range.addEventListener("mousemove", handleRangeUpdate);
+})
 
-// timing
-console.time("fetching data");
-fetch("https://api.github.com/users/wesbos")
-  .then(data => data.json())
-  .then(data => {
-    console.timeEnd("fetching data");
-    console.log(data);
-  });
+let mousedown = false;
 
-// table
+progress.addEventListener("mousedown", () => mousedown = true); // second parameter needs to be a function
+progress.addEventListener("mouseup", () => mousedown = false);
 
-console.table(dogs);
+progress.addEventListener("click", scrub);  // need to select the progressBar container, as the bar itself has changing size
+progress.addEventListener("mousemove", (eve) => { if (mousedown === true) scrub(eve) });  // need to pass the event as scrub function needs to know the initial position   
+
+fullScreenButton.addEventListener("click", fullScreen);
+
+
+
+

@@ -1,128 +1,73 @@
-<style>
-#js-code {
-  position: absolute;
-  top: 26vh;
-  left: 4vw;
-}
-
-#back-text {
-    color: black;
-  }
-
-  .back {
-    filter: none;
-  }
-
-  .message {
-    position: absolute;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    top: 18vh;
-    left: 4vw;
-  }
-
-</style>
-
-
 <body>
 
-<p class="message">This session is about exploring the differences between 
-a copy and a reference of arrays and objects. check the code below:</p>
+  <style>
 
-<p id="js-code">
-<code>
-// start with strings, numbers and booleans<br>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@900&display=swap');
 
-let string = "word";<br>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 900;
+      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+    }
 
-let string2 = string;<br>
+    p {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: normal;
+      text-transform: none;
+      margin-top: 30px;
+      padding: 0 20px;
+    }
 
-console.log(string, string2);<br>
+    /* @media only screen and (max-width: 400px) {
+      p {
+        width: 350px;
+      }
+    } */
 
-string2 = "different word";<br>
+    #bands {
+      list-style: inside square;
+      font-size: 20px;
+      /* background: white; */
+      width: 350px;
+      margin: auto;
+      padding: 0;
+      /* box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05); */
+      list-style-type: none;
+    }
+    
+    #bands li {
+      /* border-bottom: 1px solid #efefef; */
+      padding: 8px 20px;
+      background: rgb(255,255,255,0.6);
+    }
+    
+    #bands li:last-child {
+      border-bottom: 0;
+    }
 
-console.log(string, string2); // string2 updated as expected<br>
-<br>
 
-// Let's say we have an array<br>
-const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];<br>
-<br>
-// and we want to make a copy of it.<br>
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
 
-const team = players;<br>
 
-console.log(players, team);<br>
-<br>
-// You might think we can just do something like this:<br>
+    .back {
+      filter: none;
+    }
 
-// console.log(team);<br>
-// console.log(players); // the original array is updated too as it always references back! not like strings/numbers/boolean<br>
 
-// however what happens when we update that array?<br>
+  </style>
 
-// now here is the problem!<br>
-
-// oh no - we have edited the original array too!<br>
-
-// Why? It's because that is an array reference, not an array copy. They both point to the same array!<br>
-
-// So, how do we fix this? We take a copy instead!<br>
-
-const teamCopy1 = team.slice(); // and the original array (team) will still be the same<br>
-
-<br>
-// one way<br>
-
-// or create a new array and concat the old one in<br>
-
-const teamCopy2 = team.concat();<br>
-<br>
-// or use the new ES6 Spread<br>
-
-const teamCopy3 = [...team];<br>
-
-const teamCopy4 = Array.from(team);<br>
-<br>
-// now when we update it, the original one isn't changed<br>
-
-// The same thing goes for objects, let's say we have a person object<br>
-
-// with Objects<br>
-const person = {<br>
-  name: 'Wes Bos',<br>
-  age: 80<br>
-};<br>
-<br>
-// and think we make a copy:<br>
-
-// how do we take a copy instead?<br>
-
-const personCopy1 = Object.assign({}, person, { age: 34, number: 777 }); // (empty target, source array, keys to be changed)<br>
-<br>
-// We will hopefully soon see the object ...spread<br>
-<br>
-const personCopy2 = { ...person }; // it works now!<br>
-<br>
-// Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.<br>
-
-const deepPerson = {<br>
-  name: 'Wes Bos',<br>
-  age: 80,<br>
-  social: {<br>
-    twitter: "@wessybossy",<br>
-    insta: "wessy.bossy"<br>
-  }<br>
-};<br>
-
-const deepPersonCopy = { ...deepPerson }; // it will copy the object but the deep part (social) is still referenced to the original and will update that one too<br>
-<br>
-// the "clone deep" function (from the web) will do it <br>
-
-// poormans deep clone<br>
-const deepPersonCopy2 = JSON.parse(JSON.stringify(deepPerson)); // turns object into string and then into object again<br>
-</code>
-</p>
-
-  
+  <p>Just click anywhere to sort list (articles ignored)</p>
+  <ul id="bands"></ul>
 
 </body>

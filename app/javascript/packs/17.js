@@ -1,38 +1,65 @@
-// DOM
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // global variable that lives in the browser on window element (webkit in case it is not supported by the browser)
 
-const list = document.getElementById("bands");
+// initialize speech recognition
+const recognition = new SpeechRecognition();
+recognition.interimResults = true; // show results straight away (otherwise one needs to wait until stop speaking)
+// recognition.continuous = true; // keeps on recognizing and returning results
 
+const button = document.querySelector(".listen-button");
+const gap = document.querySelector(".gap");
+const message = document.querySelector(".message");
 
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 
-'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 
-'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+let p = document.createElement('p');
+const words = document.querySelector(".words");
+words.appendChild(p);
 
-list.innerHTML = bands.map((band) => {
-  return `<li>${band}</li>`;
-}).join("");
+let listening = false;
 
+// functions
 
-
-// function
-
-// we want to sort the bandnames as stripped but without mofifying them
-// so we need a strip function to temporarily strip them
-
-function sortContent() {
-  const regex = /(?:(the|a|an) +)/i;
-
-  function strip(bandname) {
-    return bandname.replace(regex, "");
-  }
-
-  const bandsOrdered = bands.sort((a, b) => (strip(a) > strip(b)) ? 1 : -1);
-
-  list.innerHTML = bandsOrdered.map((band) => {
-    return `<li>${band}</li>`;
-  }).join("");
+function start() {
+  recognition.start();
+  button.classList.add("active");
+  gap.classList.add("texting");
 }
 
+function end() {
+  recognition.stop();
+  button.classList.remove("active");
+  gap.classList.remove("texting");
+}
 
-// event listener
+function toggleListening(eve) {
+  message.classList.add("hide");
+  listening ? end() : start();
+  listening = !listening;
+}
 
-window.addEventListener("click", sortContent);
+function newParagraph() {
+  if (listening) recognition.start();
+}
+
+function speechText(e) {
+  const transcript = Array.from(e.results)  // need to create an array from resultslist
+    .map(result => (result[0].transcript))
+    .join("")
+
+  p.textContent = transcript;
+
+  if (e.results[0].isFinal) {
+    p = document.createElement('p');
+    words.appendChild(p);
+  }
+}
+
+// event listeners
+
+// recognition.start();
+
+
+button.addEventListener("click", (eve) => toggleListening());
+
+recognition.addEventListener("result", speechText);
+
+recognition.addEventListener("end", newParagraph);
+

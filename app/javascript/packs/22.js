@@ -1,46 +1,40 @@
-// DOM
-const msg = new SpeechSynthesisUtterance();
-let voices = [];
-const voicesDropdown = document.querySelector('[name="voice"]');
-const options = document.querySelectorAll('[type="range"], [name="text"]');
-const speakButton = document.querySelector('#speak');
-const stopButton = document.querySelector('#stop');
-msg.text = document.querySelector("[name='text']").value;  // .text is a property of the SpeechSynthesisUtterance interface
-const textField = document.querySelector('textarea');
+// dom
+const slider = document.querySelector(".gallery");
 
-// functions 
-function populateVoices() {
-  voices = this.getVoices();
-  console.log(voices);
-  voicesDropdown.innerHTML = voices
-    // .filter(voice => voice.lang.includes('de'))
-    .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
-    .join("")
-}
+let isDown = false;
+let startX;
+let scrollLeft;
 
-function setVoice() {
-  msg.voice = voices.find(voice => (voice.name === this.value));
-  toggle();
-}
 
-// if voice changed I wanna restart the entire thing
-function toggle(startOver = true) {  // somethimes you wanna set to false to not restart itself
-  speechSynthesis.cancel();
-  if(startOver) speechSynthesis.speak(msg);
-}
 
-function setOption() {
-  msg[this.name] = this.value;
-  toggle();
-}
 
-// Eventlisteners
+// function
 
-speechSynthesis.addEventListener('voiceschanged', populateVoices); // speechSynthesis = global Variable ; voicechanged = event of Web Speech API
-voicesDropdown.addEventListener('change', setVoice);
-textField.addEventListener('change', () => msg.text = document.querySelector("[name='text']").value);
 
-options.forEach((option) => option.addEventListener('change', setOption));
 
-speakButton.addEventListener('click', toggle);
-stopButton.addEventListener('click', () => toggle(false)); // as an additional function, false can be passed 
+// eventlisteners
+
+slider.addEventListener("mousedown", (eve) => {
+  isDown = true;
+  slider.classList.add("active");
+  startX = eve.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft; // store in var cause scrollleft changes while moving and we need to go back to initial state
+});
+
+slider.addEventListener("mouseleave", () => {
+  isDown = false;
+  slider.classList.remove("active");
+});
+
+slider.addEventListener("mouseup", () => {
+  isDown = false;
+  slider.classList.remove("active");
+});
+
+slider.addEventListener("mousemove", (eve) => {
+  if (!isDown) return;
+  eve.preventDefault;
+  const mouseX = eve.pageX - slider.offsetLeft; // same as above but we need to recalculate offset everytime we move the mouse
+  const walk = (mouseX - startX) * 1.5; // makes scrolling faster
+  slider.scrollLeft = scrollLeft - walk; // since walk is 0, we need to substract from initial scrollLeft. otherwise slider would jump back.
+});

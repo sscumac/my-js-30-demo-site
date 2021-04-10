@@ -1,128 +1,136 @@
 <body>
+  <div class="gallery">
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+     <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    <div class="ray"></div>
+    
+  </div>
 
-    <div class="speechbox">
+  <div class="message">
+      <i class="fas fa-chevron-left"></i>
+      <p class="text"> drag the rays </p> 
+      <i class="fas fa-chevron-right"></i>
+  </div>
 
-      <h1>speak my text</h1>
+  
 
-      <select name="voice" id="voices">
-        <option value="">Select A Voice</option>
-      </select>
-      <div class="section">
-        <label for="rate">rate</label>
-        <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
-      </div>
 
-      <div class="section">
-        <label for="pitch">pitch</label>
-        <input name="pitch" type="range" min="0" max="2" step="0.1">
-      </div>
+<style>
+    html {
+  box-sizing: border-box;
+  background: url('https://source.unsplash.com/6t7x7BKE8mo/2000x2000') fixed;
+  background-size: cover;
+  /* background-color: rgb(27, 27, 27); */
+}
 
-      <textarea name="text">Hello! I love JavaScript 🤩</textarea> 
-      <button id="stop">Stop!</button>
-      <button id="speak">Speak</button>
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
-    </div>
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+.gallery {
+  height: 150vh;
+  padding: 100px;
+  width: 100%;
+  border: 1px solid white;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: none;
+  <%# cursor: pointer; %>
+  font-size: 18px;
+  perspective: 1px;
+}
+
+.gallery.active {
+  background: rgba(255,255,255,0.05);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.ray {
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: 100;
+  color: rgba(0,0,0,0.15);
+}
+
+.ray:nth-child(10n+1) { background: #277da1}
+.ray:nth-child(10n+2) { background: #F9C74F}
+.ray:nth-child(10n+3) { background: #43AA8B}
+.ray:nth-child(10n+4) { background: #F8961E}
+.ray:nth-child(10n+5) { background: #4D908E}
+.ray:nth-child(10n+6) { background: #F94144}
+.ray:nth-child(10n+7) { background: #F9844A}
+.ray:nth-child(10n+8) { background: #577590}
+.ray:nth-child(10n+9) { background: #F3722C}
+.ray:nth-child(10n+10) { background: #90BE6D}
+
+.ray:nth-child(even) { transform: scaleX(1.31) rotateY(40deg); }
+.ray:nth-child(odd) { transform: scaleX(1.31) rotateY(-40deg); }
+
+.message {
+    color: white;
+    font-family: "Zilla Slab";
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    position: fixed;
+    top: 80vh;
+    left: 42vw;
+    font-size: 28px;
+  }
+
+  .text {
+    padding: 20px;
+  }
+
+  </style>
 
 </body>
 
-<style>
-  html {
-    font-size: 10px;
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-
-    background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
-
-  }
-
-  label {
-    padding-top: 19px;
-    padding-right: 20px;
-    font-size: 16px;
-  }
-
-  .section {
-    display: flex;
-  }
-
-  .speechbox {
-    padding: 2rem;
-    width: 50rem;
-    margin: 0 auto;
-    border-radius: 3px;
-    position: relative;
-    background: white;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  h1 {
-    width: calc(100% + 4rem);
-    margin: -2rem 0 2rem -2rem;
-    padding: .5rem;
-    text-align: center;
-    font-size: 5rem;
-    font-weight: 100;
-    font-family: 'Pacifico', cursive;
-  }
-
-  .speechbox input,
-  .speechbox button,
-  .speechbox select,
-  .speechbox textarea {
-    width: 100%;
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    border: 0;
-    font-size: 2rem;
-    background: #F7F7F7;
-    outline: 0;
-  }
-
-  textarea {
-    height: 20rem;
-  }
-
-  input[type="select"] {
-
-  }
-
-  .speechbox button {
-    background: white;
-    border: 2px solid;
-    width: 49%;
-    float: left;
-    font-family: 'Pacifico', cursive;
-    margin-bottom: 0;
-    font-size: 2rem;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .speechbox button:active {
-    opacity: 0.5;
-  }
-
-  .speechbox button:nth-of-type(1) {
-    margin-right: 2%;
-  }
-
-  .back {
-    filter: none;
-  }
-
-</style>
