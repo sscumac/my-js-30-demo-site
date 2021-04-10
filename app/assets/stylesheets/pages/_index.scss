@@ -54,10 +54,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: helvetica neue;
+  font-family: 'Fredoka One', cursive;
   font-weight: bold;
   font-size: 36px;
   opacity: 0.85;
+  letter-spacing: 0.05em;
+  text-align: center;
 }
 
 .search-wrapper {
