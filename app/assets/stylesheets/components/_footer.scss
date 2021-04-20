@@ -1,5 +1,4 @@
 .footer {
-  // height: 5vh;
   background-color: white;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -9,12 +8,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // align-self: flex-end;
   z-index: 10;
-  opacity: 0.85;
+  // opacity: 0.85;
   width: 100vw;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 25px;
+}
+
+.footer a{
+  color: rgb(83, 83, 83);
+  transition: all 0.2s;
+}
+
+.footer a:hover{
+  color:rgb(0, 0, 0)
 }
 
 .icon {
