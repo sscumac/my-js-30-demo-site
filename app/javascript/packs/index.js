@@ -58,7 +58,7 @@ function findMatch(search, cards) {
 
 function showInfoBox() {
   infoBox.classList.add("show-info-box");
-  grid.style.opacity = 0.1;
+  grid.style.opacity = 0.05;
   infoText.style.opacity = 1;
   infoClose.classList.remove("hide");
   infoIcon.classList.add("hide");
