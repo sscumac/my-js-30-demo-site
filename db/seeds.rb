@@ -14,17 +14,14 @@ puts "Built new database"
 challenge_1 = Challenge.create(name: "Drum Kit", number: 1)
 challenge_2 = Challenge.create(name: "CSS Clock", number: 2)
 challenge_3 = Challenge.create(name: "Update CSS Variables", number: 3)
-
 challenge_4 = Challenge.create(name: "Flex Panel Gallery", number: 4)
 challenge_5 = Challenge.create(name: "Type and Filter Dataset", number: 5)
-
 challenge_6 = Challenge.create(name: "Colourful HTML Canvas", number: 6)
 challenge_7 = Challenge.create(name: "Dev Tool Yoga", number: 7)
 challenge_8 = Challenge.create(name: "Hold Shift for Checkboxes", number: 8)
 challenge_9 = Challenge.create(name: "Custom Video Player", number: 9)
 challenge_10 = Challenge.create(name: "Type the Secret Code", number: 10)
 challenge_11 = Challenge.create(name: "Slide in on Scroll", number: 11)
-
 challenge_12 = Challenge.create(name: "LocalStorage and Event delegation", number: 12)
 challenge_13 = Challenge.create(name: "Mouse Move Shadow Dance", number: 13)
 challenge_14 = Challenge.create(name: "Sort Without Articles", number: 14)
@@ -37,4 +34,5 @@ challenge_20 = Challenge.create(name: "Slide into Sticky Nav", number: 20)
 challenge_21 = Challenge.create(name: "Bubbling, Capture and Once", number: 21)
 challenge_22 = Challenge.create(name: "Drag the Rays", number: 22)
 challenge_23 = Challenge.create(name: "Fancy Navbar", number: 23)
+challenge_24 = Challenge.create(name: "Accessible Categories", number: 24)
 
